@@ -1,0 +1,117 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Add Product</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Add Product</li>
+            </ol>
+          </nav>
+        </div>
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+          
+          <fieldset>
+            <!-- <legend>Add product</legend> -->
+            <div class="mb-3">
+              <label class="form-label">Product Name</label>
+              <input type="text" name="productname" id="name" class="form-control" placeholder="enter product name">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Category</label>
+              <select id="" class="form-select" name="category">
+                <option>Select category</option>
+                <% prodcategory.forEach((cat,i)=>{ %>
+                  <option value="<%= cat._id %>">
+                    <%= cat.category%>
+                  </option>
+
+                  <% }) %>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <input type="text" name="description" id="description" class="form-control" placeholder="">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Stock</label>
+              <input type="number" name="stock" id="stock" class="form-control" placeholder="Should be in numbers">
+            </div>
+            <!-- <div class="mb-3">
+          <label  class="form-label">Qnty</label>
+          <input type="number" name="qnty" id="" class="form-control" placeholder="Should be in numbers">
+        </div> -->
+            <div class="mb-3">
+              <label class="form-label">Price</label>
+              <input type="number" name="price" id="price" class="form-control" placeholder="Should be in numbers">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Image</label>
+              <input multiple type="file" name="image" id="" class="form-control" onchange="show(this)" accept="image/*" placeholder=""
+                required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div>
+          <% if(typeof message!=="undefined" ){%>
+            <h1 style="font-size:16px;color:rgb(35, 120, 14);">
+              <%=message %>
+            </h1>
+            <%}%>
+        </div>
+
+      </main>
+
+      <script>
+        function show(input) {
+          debugger;
+          var validExtensions = ['jpg', 'png', 'jpeg']; //array of valid extensions
+          var fileName = input.files[0].name;
+          var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+          if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#user_img').attr('src', "");
+            alert("Only these file types are accepted : " + validExtensions.join(', '));
+          }
+          else {
+            if (input.files && input.files[0]) {
+              var filerdr = new FileReader();
+              filerdr.onload = function (e) {
+                $('#user_img').attr('src', e.target.result);
+              }
+              filerdr.readAsDataURL(input.files[0]);
+            }
+          }
+        }
+      </script>
+
+<script>
+  function validateForm() {
+      let name = document.getElementById("name").value;
+      let description = document.getElementById("description").value;
+      let stock = document.getElementById("stock").value;
+      let price = document.getElementById("price").value;
+      
+      
+      
+      if (name.trim() == "" || stock.trim() == "" ||description.trim() == ""||price.trim() == "") {
+          Swal.fire('All fields are required')
+          return false;
+      }
+      
+      if (stock <= 0) {
+          Swal.fire('Minimum one stock is required')
+          return false;
+      }
+      
+      
+      return true;
+  }
+  </script>
+
+      <%- include('../layout/admin/footer.ejs')%>

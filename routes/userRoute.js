@@ -53,7 +53,7 @@ userRoute.get('/forgotpassword',userController.forgot)
 
 userRoute.get('/about',userController.about)
 
-
+//============================================================================
 
 //post
 userRoute.post('/login' ,userController.loginVerify)

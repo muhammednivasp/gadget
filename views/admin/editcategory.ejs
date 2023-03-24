@@ -1,0 +1,58 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+
+      <main id="main" class="main">
+
+
+        <form class="needs-validation" method="post" action="">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom01">Edit Category name</label>
+              <input type="text" class="form-control" id="validationCustom01" placeholder=""
+                value="<%= viewcat.category%>" name="newcategory" required>
+              <!-- <div class="valid-feedback">
+          Looks good!
+        </div> -->
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationCustom02">Edit Description</label>
+              <input type="text" class="form-control" id="validationCustom02" placeholder=""
+                value="<%= viewcat.description%>" name="newdescription" required>
+              <!-- <div class="valid-feedback">
+          Looks good!
+        </div> -->
+            </div>
+
+          </div>
+          <button class="btn btn-primary" type="submit">Submit form</button>
+          <div>
+            <% if(typeof message!=="undefined" ){%>
+              <h1 style="font-size:16px;color:rgb(209, 14, 14);">
+                <%=message %>
+              </h1>
+              <%}%>
+          </div>
+        </form>
+      </main>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict';
+          window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      </script>
+      <%- include('../layout/admin/footer.ejs')%>

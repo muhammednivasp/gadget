@@ -1,0 +1,59 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+
+<main id="main" class="main">
+    <div class="col-lg-12">
+      <h4 class="card-title">Sales Report</h4>
+      <p>Home | Sales Report</p>
+      <div class="card">
+        <div class="card-header">
+          <button type="button" class="btn btn-primary float-right" onclick="window.print()">Print Report</button>
+        </div>
+          <div class="card-body">
+              <div class="table-responsive">
+                  <table class="table table-hover table-responsive-sm">
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>Date</th>
+                              <th>Product Name</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>Payment Method</th>
+                              <th>Total Amount</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <% for(let i=0;i<len;i++){%>  
+                          <tr>
+                             <td><%=i+1%> </td> 
+                              <td><%=sales[i].date.toLocaleDateString()%></td>
+                              <td>
+                        <% sales[i].product.forEach((element)=>{%>
+                            <%=element.productId.productname%><br>
+                        <%})%>
+                      </td>   
+                  <td>
+                      <% sales[i].product.forEach((element)=>{%>
+                      <%=element.quantity%><br>
+                    <%})%>
+                  </td>   
+                  <td>
+              <% sales[i].product.forEach((element)=>{%>
+                  <%=element.singleTotal%><br>
+                  <%})%>
+         </td>     
+         <td><%=sales[i].paymentType%></td>             
+                    <td><%=sales[i].total%></td>    
+                    </tr> 
+                      <%}%>  
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </main>
+
+  <%- include('../layout/admin/footer.ejs')%>

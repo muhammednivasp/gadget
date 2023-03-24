@@ -1,0 +1,145 @@
+<%- include('../layout/user/userheader.ejs')%>
+	<%- include('../layout/user/usernavbar.ejs')%>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+		<div class="cart-wrap">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="main-heading mb-10 text-center">
+							<h3>wishlist</h3>
+						</div>
+
+						<div class="table-wishlist reloaddiv">
+							<% if(userData.wishlist.length==0){%>
+								<div class="mt-5" style="text-align: center;">
+									<img class=""
+										src="https://faconn.com/wp-content/uploads/2022/03/EXAM360-No-Wishlist.png"
+										alt="empty cart">
+									<%} else{%>
+										<table cellpadding="0" cellspacing="0" border="0" width="100%" class="">
+											<thead>
+												<tr>
+													<th width="35%" class="text-center">Product </th>
+													<th width="2%">details</details>
+													</th>
+													<th width="20%">Unit Price</th>
+													<th width="15%" class="text-center">actions</th>
+													<!-- <th width="15%"></th>
+					        		<th width="10%"></th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<div>
+													<% userData.wishlist.forEach((element)=>{ %>
+
+														<tr>
+															<td width="30%">
+																<div class="display-flex align-center">
+																	<div class="img-product">
+																		<img src="/images/<%=element.product.image[0] %>"
+																			alt="" class="mCS_img_loaded">
+																	</div>
+																	<div class="name-product">
+																		<%=element.product.productname %>
+																	</div>
+
+																</div>
+															</td>
+															<td width="25%">
+																<%=element.product.description %>
+															</td>
+															<td width="15%" class="price">Price: <%=
+																	element.product.price%> INR</td>
+
+															<td width="10%"><button class="round-black-btn small-btn"
+																	onclick="addtocart('<%= element.product._id%>','<%= element.product.price%>')">Add
+																	to Cart</button></td>
+															<td width="10%"><button type="button"
+																	class="round-black-btn small-btn"
+																	onclick="deletewish('<%= element.product._id%>')">delete</button>
+															</td>
+															<!-- <td width="10%" class="text-center"><a href="#" class="trash-icon"><i class="far fa-trash-alt"></i></a></td> -->
+														</tr>
+														<% }) %>
+												</div>
+											</tbody>
+										</table>
+								</div>
+								<%}%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function deletewish(proId) {
+				Swal.fire({
+					title: 'Are you sure?',
+					text: "You won't be able to revert this!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Yes, delete it!'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$.ajax({
+							url: "/deletewish",
+							data: {
+								product: proId,
+							},
+							method: "post",
+							success: (response) => {
+								Swal.fire(
+									'Deleted!',
+									'Your file has been deleted.',
+									'success'
+								);
+								$('.reloaddiv').load('/wishlist .reloaddiv');
+							}
+						})
+					}
+				})
+			}
+
+			function addtocart(id, price) {
+				$.ajax({
+					url: "/wishtocart",
+					data: {
+						id: id,
+						price: price
+					},
+					method: "post",
+					success: (response) => {
+						if (response.success) {
+							Swal.fire({
+								position: 'top-end',
+								icon: 'success',
+								title: 'Your work has been saved',
+								showConfirmButton: false,
+								timer: 1500
+							}).then(() => {
+								$('.reloaddiv').load('/wishlist .reloaddiv')
+							})
+
+						} else {
+							Swal.fire({
+								position: 'top-end',
+								icon: 'warning',
+								title: 'Your work has nt been saved',
+								showConfirmButton: false,
+								timer: 1500
+							})
+						}
+
+
+
+					}
+				})
+			}
+		</script>
+
+		<%- include('../layout/user/userfooter.ejs')%>

@@ -1,0 +1,144 @@
+<%- include('../layout/user/userheader.ejs')%>
+    <%- include('../layout/user/usernavbar.ejs')%>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+
+        <div class="container mt-5 mb-5 reloaddiv">
+            <%singleproduct.forEach((element)=>{ %>
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-6 border-end">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div class="main_image"> <img src="/images/<%=element.image[0] %>"
+                                        id="main_product_image" width="350"> </div>
+                                <div class="thumbnail_images">
+                                    <ul id="thumbnail">
+                                        <% for(var i=0;i<element.image.length;i++){%>
+                                            <li><img onclick="changeImage(this)" src="/images/<%=element.image[i] %>"
+                                                    width="70"></li>
+                                            <%}%>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 right-side">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3> </h3> <span class="heart"><a href="/addtowish/<%= element._id %>"><i
+                                                class='bx bx-heart'></i></a></span>
+                                </div>
+                                <div class="mt-2 pr-3 content">
+                                    <h2>
+                                        <%=element.productname %>
+                                    </h2>
+                                </div>
+                                <div class="mt-2 pr-3 content">
+                                    <p>
+                                        <%=element.description %>
+                                    </p>
+                                </div>
+                                <h4>Rs.<%=element.price %>
+                                </h4>
+                                <!-- <div class="ratings d-flex flex-row align-items-center">
+                                <div class="d-flex flex-row"> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i
+                                        class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bx-star'></i>
+                                </div> <span>441 reviews</span></div> -->
+                                <!-- <div class="mt-5"> <span class="fw-bold">Color</span> -->
+                                <!-- <div class="colors">
+                                    <ul id="marker">
+                                        <li id="marker-1"></li>
+                                        <li id="marker-2"></li>
+                                        <li id="marker-3"></li>
+                                        <li id="marker-4"></li>
+                                        <li id="marker-5"></li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                            <div class="buttons d-flex flex-row mt-5 gap-3 reloaddiv">
+                                <!-- <button class="btn btn-outline-dark reloaddiv">Buy Now</button> -->
+                                <% if(typeof cartcheck !=='undefined' ){ %>
+                                    <button class="btn btn-outline-dark"><a href="/viewcart"
+                                            class="text-decoration-none">view Cart</a></button>
+                                    <% }else{ %>
+                                        <!-- <button class="btn btn-dark"><a
+                                        href="/addtocart/<%=element._id%>"  class="text-decoration-none">Add to Cart</a></button>  -->
+                                        <button class="btn btn-dark "
+                                            onclick="wishtocart('<%= element._id %>','<%= element.price %>')"><a
+                                                class="text-decoration-none">Add to Cart</a></button>
+                                        <% } %>
+                                            <!-- </div>
+                            <div class="search-option"> <i class='bx bx-search-alt-2 first-search'></i>
+                                <div class="inputs"> <input type="text" name=""> </div> <i
+                                    class='bx bx-share-alt share'></i>
+                            </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+                    <% if(typeof message!=="undefined" ){%>
+                        <h1 style="font-size:16px;color:rgb(207, 38, 16);">
+                            <%=message %>
+                        </h1>
+                        <%}%>
+        </div>
+
+
+        <script>
+           function wishtocart(proId, price) {
+    $.ajax({
+        url: "/wishtocart",
+        data: {
+            id: proId,
+            price: price
+        },
+        method: "post",
+        success: (response) => {
+            if (response.success) {
+                
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    const prid = JSON.parse(proId);
+                    // $('.reloaddiv').load(`/singleproduct/${proId}.reloaddiv`)
+                    $('.reloaddiv').load(`/singleproduct/:id .reloaddiv`)
+                    // $('.reloaddiv').load(`/singleproduct/${proId.valueOf()}.reloaddiv`)
+                })
+
+            } else {
+                Swal.fire({
+                    position: 'top',
+                    icon: 'warning',
+                    title: 'Your work has not been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        }
+    })
+}
+
+
+        </script>
+
+<script>
+function changeImage(img) {
+    // get the source of the thumbnail image
+    var src = img.src;
+    
+    // get the main image element
+    var mainImg = document.getElementById("main_product_image");
+    
+    // change the source of the main image to the thumbnail image source
+    mainImg.src = src;
+  }
+</script>
+
+
+        <%- include('../layout/user/userfooter.ejs')%>

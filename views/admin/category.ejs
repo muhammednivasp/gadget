@@ -1,0 +1,86 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>category</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">category</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+        <button type="button" class="btn btn-outline-primary"><a href="category/addcategory">ADD NEW</a></button>
+        <br>
+        <br>
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">
+                <h4>No</h4>
+              </th>
+              <th scope="col">
+                <h4>Category</h4>
+              </th>
+              <th scope="col">
+                <h4>Description</h4>
+              </th>
+              <th scope="col">
+                <h4>action</h4>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% categoryDatas.forEach((x,index)=>{ %>
+
+              <tr>
+                <th scope="row">
+                  <%= index+1 %>
+                </th>
+                <td>
+                  <%= x.category %>
+                </td>
+                <td class="truncate">
+                  <%= x.description %>
+                </td>
+
+                <td>
+                  <button type="button" class="btn btn-secondary"><a class="text-decoration-none text-white"
+                      href="/admin/category/editcategory/<%=x._id %>">Edit</a></button>
+                  <!-- <button class="btn btn-danger"><a class="text-decoration-none text-white"
+                      href="/admin/category/delete/<%= x._id %>">Delete</a></button> -->
+
+                      <a href="/admin/category/unlistcat/<%= x._id %>">
+                      <% if(x.unlist==true){%>
+                        <button type="button" class="btn btn-warning">
+                          List
+                        </button>
+                        <% }else{%>
+                          <button type="button" class="btn btn-warning">
+                            Unlist
+                          </button>
+                          <% } %>
+                      </a>
+                </td>
+              </tr>
+
+
+              <% }); %>
+
+          </tbody>
+        </table>
+        <div>
+          <% if(typeof message!=="undefined" ){%>
+            <h1 style="font-size:16px;color:rgb(212, 24, 24);">
+              <%=message %>
+            </h1>
+            <%}%>
+        </div>
+
+      </main><!-- End #main -->
+
+
+      <%- include('../layout/admin/footer.ejs')%>

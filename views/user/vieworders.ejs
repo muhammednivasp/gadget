@@ -1,0 +1,231 @@
+<%- include('../layout/user/userheader.ejs')%>
+  <%- include('../layout/user/usernavbar.ejs')%>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+      integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+      <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script> -->
+
+    <div class="text-center p-4"
+      style="font-weight: bolder; font-size:x-large; color: rgb(251, 250, 252); background-color: rgb(10, 10, 10); height:80px; ">
+      ORDER HISTORY</div>
+
+    
+<div id="reload">
+  <div class="reloadDiv table-responsive">
+    <table class="table table-success table-striped"  id="change">
+      <thead>
+        <tr>
+          <th scope="col" style="text-align: center;">No</th>
+          <th scope="col" style="text-align: center;">product Name</th>
+          <th scope="col" style="text-align: center;">Price</th>
+          <th scope="col" style="text-align: center;">quantity</th>
+          <th scope="col" style="text-align: center;">Total Price</th>
+          <th scope="col" style="text-align: center;">Discount</th>
+          <th scope="col" style="text-align: center;">TOTAL</th>
+          <th scope="col" style="text-align: center;">Payment Method</th>
+          <th scope="col" style="text-align: center;">Delivery Address</th>
+          <th scope="col" style="text-align: center;">Date</th>
+          <th scope="col" style="text-align: center;">status</th>
+          <th scope="col" style="text-align: center;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% order.forEach((element,index)=> {%>
+
+          <tr>
+            <th scope="row" style="text-align: center;">
+              <%= index+1 %>
+            </th>
+
+            <td style="text-align: center;">
+
+              <% element.product.forEach((x,index)=>{ %>
+                <%=x.productId.productname %>
+                  <br>
+
+                  <% }); %>
+            </td>
+            <td style="text-align: center;">
+              <% element.product.forEach((x,index)=>{ %>
+
+                <%=x.productId.price %>
+                  <br>
+                  <% }) %>
+            </td>
+            <td style="text-align: center;">
+              <% element.product.forEach((x,index)=>{ %>
+                <%=x.quantity %>
+                  <br>
+                  <% }); %>
+            </td>
+            <td style="text-align: center;">
+              <%= element.totalprice %>
+            </td>
+            <td style="text-align: center;">
+              <%= element.discount%>
+            </td>
+            <td style="text-align: center;">
+              <%= element.total%>
+            </td>
+            <td style="text-align: center;">
+              <%= element.paymentType%>
+            </td>
+            <td style="text-align: center;">
+              <%= element.deliveryAddress %>
+            </td>
+            <td style="text-align: center;">
+              <%= element.date.toLocaleString({ year: '2-digit' , month: '2-digit' ,day: '2-digit' }) %>
+            </td>
+            <td style="text-align: center;">
+              <%= element.status %>
+            </td>
+
+            <% if(element.status=="Return requested"||element.status=="Returned") {%>
+            <td data-label="Action"  style="color: red;">Order Returned </td>
+            <% }else if(element.status=="Delivered" ) {%>
+              <td data-label="Action"> <button onclick="returnOrder('<%= element._id%>')" class="btn btn-warning">Return</button> </td>
+              <% } else{%>
+              <% if( element.status != "Cancelled") {%>
+            <td data-label="Action"> <button onclick="cancelOrder('<%= element._id%>')" class="btn btn-danger">Cancel</button> </td>
+          <% }else{ %>
+            <td data-label="Action" style="color: red;">Order cancelled</td>
+            <% } %>
+        
+            <% } %>
+          </tr>
+
+            
+
+          <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>
+    
+
+    <script>
+      function cancelOrder(orderId) {
+        // console.log(orderId)
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You wan't to cancel!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'yes, cancel!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+
+            $.ajax({
+              url: '/cancelorder',
+              data: {
+                id: orderId
+              },
+              method: 'post',
+              success: (response) => {
+             Swal.fire({
+                  title: 'Canelled!',
+                  text: 'Your order Cancelled',
+                  icon: 'success',
+                  showConfirmButton: false
+                })
+                console.log(response);
+                $('#reload').load('/viewOrder #reload')
+              
+              }
+            })
+          }
+        })
+      }
+      function returnOrder(orderId){
+    Swal.fire({
+              title: 'Are you sure?',
+              text: "You wan't to return!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'yes, return!'
+          }).then((result) => {
+                 if (result.isConfirmed) {
+
+                 $.ajax({
+                url:'/userreturnorder',
+                 data:{
+                id:orderId
+      
+    },
+    method:'post',
+    success:(response)=>{
+      Swal.fire({
+                 title: 'Return!',
+                 text: 'Your order Returned',
+                 icon: 'success',
+                 showConfirmButton: false
+             })
+      $('#reload').load('/viewOrder #reload')
+      console.log(response);   
+    }
+  })
+
+}
+          })
+  }
+    </script>
+
+<!-- <script>
+  $(document).ready(function () {
+    $('#change').DataTable();
+  });
+</script> -->
+
+
+
+<div class="d-flex align-items-center justify-content-center">
+  <% if(typeof page !== 'undefined'){ %>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <% if (page > 1) { %>
+          <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <% } %>
+        </li> 
+
+        <% for (let i = 1; i <= countdata; i++) { %>
+           <% if (i === page) { %>
+             <li class="page-link text-danger"><%= i %></li>
+           <% } else { %>
+              <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+              <% } %>
+        <% } %>
+
+        <li class="page-item">
+          <% if (page < countdata) { %>
+          <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+          <% } %>
+        </li>
+      </ul>
+    </nav>
+<% } %>
+</div>
+    
+    <%- include('../layout/user/userfooter.ejs')%>

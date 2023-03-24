@@ -76,6 +76,7 @@ adminRoute.get('/orders', auth.isLogin, adminController.orders)
 adminRoute.get('/dashboard',auth.isLogin,adminController.dashboard)
 adminRoute.get('/salesReport',auth.isLogin,adminController.sales)
 
+//==================================================================================
 
 //post
 adminRoute.post('/', adminController.loginVerify)

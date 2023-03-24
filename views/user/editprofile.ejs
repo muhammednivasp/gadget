@@ -1,0 +1,92 @@
+<%- include('../layout/user/userheader.ejs')%>
+  <%- include('../layout/user/usernavbar.ejs')%>
+    <section style="background-color: #130404;">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+              <ol class="breadcrumb mb-0 justify-content-center">
+                <h4>edit profile</h4>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <% if(typeof userData!=='undefined' ){ %>
+
+          <form action="/editprofile/<%=userData._id%>" method="post">
+            <div class="col-lg-12">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Name</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <input type="text" name="username" class="form-control form-control-line"
+                        value="<%=userData.username %>">
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">last Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" name="lname" class="form-control form-control-line" value="       </div>
+              </div> -->
+                  <!-- <hr> -->
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <input type="text" name="email" class="form-control form-control-line"
+                        value="<%=userData.email %>">
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="Number" name="phonenumber" class="form-control form-control-line" value="<%=userData.phonenumber%>"> 
+                </div>
+              </div>
+              <hr> -->
+                  <!-- <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0" >username</p>
+                </div>
+                <div class="col-sm-9">
+                  <input type="text" name="username" class="form-control form-control-line" value=" 
+                    <h6 style="color: rgb(224, 86, 86);">
+        
+                    </h6>
+                        </div>
+              </div>
+              <hr> -->
+                  <!-- <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                </div>
+              </div> -->
+                </div>
+              </div>
+              <button type="submit">Save Action</a></button>
+            </div>
+          </form>
+
+          <%} %>
+            <% if(typeof message!=="undefined" ){%>
+              <h1 style="font-size:16px;color:rgb(207, 38, 16);">
+                <%=message %>
+              </h1>
+              <%}%>
+      </div>
+    </section>
+
+    <%- include('../layout/user/userfooter.ejs')%>

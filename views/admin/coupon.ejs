@@ -1,0 +1,105 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+
+
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Coupon</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">coupon</li>
+            </ol>
+          </nav>
+        </div>
+        <a class="waves-effect waves-dark p-4" href="/admin/addCoupons" aria-expanded="false"><i
+            class="fa fa-gift"></i><button type="button" class="hide-menu btn btn-outline-primary">Add
+            Coupon</button></a>
+        <div>
+          <br>
+          <% if(typeof message!=="undefined" ){%>
+            <h1 style="font-size:16px;color:rgb(227, 13, 13);">
+              <%=message %>
+            </h1>
+            <%}%>
+        </div>
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col" style="text-align: center;">NO</th>
+              <th scope="col" style="text-align: center;">Coupon Code</th>
+              <th scope="col" style="text-align: center;">Expire Date</th>
+              <th scope="col" style="text-align: center;">Maximum Discount</th>
+              <th scope="col" style="text-align: center;">Minimum Purchase Amount</th>
+              <th scope="col" style="text-align: center;">Offer %</th>
+              <th scope="col" style="text-align: center;">status</th>
+              <th scope="col" style="text-align: center;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% couponData.forEach((x,index)=>{ %>
+
+              <tr>
+                <th scope="row" style="text-align: center;">
+                  <%= index+1 %>
+                </th>
+                <td class="" style="text-align: center;">
+                  <%= x.code %>
+                </td>
+                <td class="truncate" style="text-align: center;">
+                  <%= x.expirationDate ? new Date(x.expirationDate).toLocaleDateString() : "" %>
+                </td>
+                <td class="truncate" style="text-align: center;">
+                  <%= x.maxDiscount %>
+                </td>
+                <td class="truncate" style="text-align: center;">
+                  <%= x.MinPurchaceAmount %>
+                </td>
+                <td class="truncate" style="text-align: center;">
+                  <%= x.percentageOff %> %
+                </td>
+                <% date=new Date()%>
+                  <% if(x.expirationDate>=date){%>
+                    <td style="color: green; text-align: center;"><b>Active</b></td>
+                    <%}else{%>
+                      <td style="color: red; text-align: center;"><b>Expired</b></td>
+                      <%}%>
+
+                        <td style="text-align: center;">
+                          <button type="button" class="btn btn-secondary"><a class="text-decoration-none text-white"
+                              href="/admin/coupon/editcoupon/<%=x._id %>">Edit</a></button>
+                          <button class="btn btn-danger"><a class="text-decoration-none text-white"
+                              href="/admin/coupon/delete/<%= x._id %>">Delete</a></button>
+
+                          <!-- <a href="/admin/category/unlistcat/<%= x._id %>">
+                          <% if(x.unlist==true){%>
+                            <button type="button" class="btn btn-warning">
+                              List
+                            </button>
+                            <% }else{%>
+                              <button type="button" class="btn btn-warning">
+                                Unlist
+                              </button>
+                              <% } %> -->
+                          </a>
+                        </td>
+              </tr>
+
+
+              <% }); %>
+
+          </tbody>
+
+        </table>
+
+      </main>
+
+
+      </main>
+
+
+
+      <%- include('../layout/admin/footer.ejs')%>

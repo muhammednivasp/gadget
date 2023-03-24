@@ -1,0 +1,179 @@
+<%- include('../layout/user/userheader.ejs')%>
+  <%- include('../layout/user/usernavbar.ejs')%>
+
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+      <tr>
+
+      </tr>
+      <tr>
+        <td align="center" style="padding: 35px 35px 20px 35px; background-color: #cfcccc;" bgcolor="#0a0909">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+            <tr>
+              <td align="center"
+                style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 25px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/7518/7518748.png" width="125" height="120"
+                  style="display: block; border: 0px;" /><br>
+                <h2 style="font-size: 26px; font-weight: 700; line-height: 30px; color: #0f7f0b; margin: 0;">
+                  Your Order Is Completed Successfully !
+                </h2>
+
+              </td>
+
+            </tr>
+            <br>
+            <tr>
+              <td align="left"
+                style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding-top: 10px;">
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #1616e8;">
+                  Thank you for choosing gaDget </p>
+
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #090909;">
+                  Ordered Date : <% const date=order.date %>
+                    <%=moment().format("MMM Do YY"); %>
+                </p>
+
+                <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: #131313;">
+                  Order ID : <%=order.orderId %>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td align="left" style="padding-top: 20px;">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td width="75%" align="left" bgcolor="#eeeeee"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                      Products
+                    </td>
+                    <td width="25%" align="left" bgcolor="#eeeeee"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                      Qnty
+                    </td>
+                    <td width="25%" align="left" bgcolor="#eeeeee"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                      Price
+                    </td>
+                    <td width="25%" align="left" bgcolor="#eeeeee"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                      discount
+                    </td>
+                    <!-- <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                                        
+                                  </td> -->
+                  </tr>
+                  <tr>
+                    <td width="75%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                      <% order.product.forEach((element)=>{%>
+                        <%=element.productId.productname %> <br>
+                          <% }) %>
+                    </td>
+                    <td width="25%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 5px 5px 20px;">
+                      <% order.product.forEach((element)=>{%>
+                        <%=element.quantity %> <br>
+                          <% }) %>
+                    </td>
+                    <td width="25%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 5px;">
+                      <% order.product.forEach((element)=>{%>
+                        <%=element.singleprodTotal %> <br>
+                          <% }) %>
+                    </td>
+                    <td width="25%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                      <%=order.discount%>
+                    </td>
+
+                  </tr>
+
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="left" style="padding-top: 20px;">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td width="60%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; padding-left: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                      Totalprice
+                    </td>
+                    <td width="40%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; padding-left: 40px;  border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                      RS. <%=order.totalprice%>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="left" style="padding-top: 20px;">
+                <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                  <tr>
+                    <td width="75%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                      TOTAL
+                    </td>
+                    <td width="25%" align="left"
+                      style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                      RS. <%=order.total%>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+      <tr>
+        <td align="center" height="100%" valign="top" width="100%"
+          style="padding: 30px 0px 35px 35px; background-color: #bab7b7;" bgcolor="#100f0f">
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:660px;">
+            <tr>
+              <td align="center" valign="top" style="font-size:0;">
+                <div style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
+
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
+                    <tr>
+                      <td align="left" valign="top"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                        <p style="font-weight: 800;">Delivery Address</p>
+                        <p>
+                          <%= order.deliveryAddress%>
+                        </p>
+
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div style="display:inline-block; max-width:50%; min-width:240px; vertical-align:top; width:100%;">
+                  <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
+                    <tr>
+                      <td align="left" valign="top"
+                        style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
+                        <!-- <p style="font-weight: 800;">Estimated Delivery Date</p>
+                                              <p>January 1st, 2016</p> -->
+                        <a style="margin-left: 120px;" href="/viewOrder"> <button type="button"
+                            class="btn btn-outline-primary p-2 mt-5 ml-5 my-5">View Orders</button></a>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+    </table>
+
+
+
+
+
+    <%- include('../layout/user/userfooter.ejs')%>

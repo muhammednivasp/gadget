@@ -1,0 +1,72 @@
+<%- include('../layout/admin/header.ejs')%>
+  <%- include('../layout/admin/navbar.ejs')%>
+    <%- include('../layout/admin/sidebar.ejs')%>
+      <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Banners</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active">Banners
+                
+              </li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+        <button type="button" class="btn btn-outline-danger"><a href="/admin/banners/addbanners">ADD NEW</a></button>
+        <br>
+        <br>
+
+        <table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">
+                <h4>No</h4>
+              </th>
+              <th scope="col">
+                <h4>Image</h4>
+              </th>
+              <th scope="col">
+                <h4>Description</h4>
+              </th>
+              <th scope="col">
+                <h4>action</h4>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% bannerData.forEach((x,index)=>{ %>
+
+              <tr>
+                <th scope="row">
+                  <%= index+1 %>
+                </th>
+                <td>
+                  <img src="/images/<%=x.image%> " style="height: 50px; width: 50px;" alt="">
+                  
+                </td>
+                <td class="truncate">
+                  <%= x.description %>
+                </td>
+
+                <td>
+                  <button type="button" class="btn btn-secondary"><a class="text-decoration-none text-white"
+                      href="/admin/banners/deletebanner/<%=x._id %>">Delete</a></button>
+                </td>
+              </tr>
+
+
+              <% }); %>
+
+          </tbody>
+        </table>
+        <div>
+          <% if(typeof message!=="undefined" ){%>
+            <h1 style="font-size:16px;color:rgb(212, 24, 24);">
+              <%=message %>
+            </h1>
+            <%}%>
+        </div>
+
+      </main><!-- End #main -->

@@ -1,0 +1,98 @@
+<%- include('../layout/user/userheader.ejs')%>
+  <%- include('../layout/user/usernavbar.ejs')%>
+
+    <section style="background-color: #111010;">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col">
+            <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+              <ol class="breadcrumb mb-0 justify-content-center">
+                <h4>Address</h4>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <% if(userData.address.length==0){%>
+          <div class="mt-5" style="text-align: center;">
+            <img class=""
+              src="	https://cdni.iconscout.com/illustration/premium/thumb/no-address-found-4344458-3613886.png"
+              alt="empty ">
+            <%} else{%>
+              <!-- <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fas fa-globe fa-lg text-warning"></i>
+                  <p class="mb-0">https://mdbootstrap.com</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                  <p class="mb-0">@mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> -->
+
+
+              <br>
+
+              <div class="card mb-4 pt-5">
+                <div class="card-body">
+
+
+                  <% userData.address.forEach((element,index)=>{ %>
+
+
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <p class="mb-0 "> Address <%=index+1 %>
+                        </p>
+                      </div>
+                      <div class="col-sm-7">
+                        <p class="text-muted mb-0">
+                          <%=element.name %>
+                            <pre>
+                <%=element.houseName %>,
+                <%=element.street %>,
+                <%=element.district %>,
+                <%=element.state %>,
+                <%=element.country %>,
+                <%=element.pincode %>,
+                <%=element.phone %>
+              </p>
+            </div>
+            <div class="col-sm-2">
+              <a style="text-decoration: none; color: rgb(222, 22, 22);"   href="/removeAddress/<%=element._id %>">remove</a>
+            </div>
+            <div class="col-sm-1">
+              <a style="text-decoration: none; color: blue;" href="/editAddress/<%=element._id %>">Edit</a>
+            </div>
+          </div>
+          <hr>
+      <%}) %>
+         </div>
+         <%} %>
+      </div>
+          
+    <div  class="text-end">
+        <a href="/addAddress"><button type="button" class="btn btn-outline-primary my-5 ms-0 mb-3" >Add Address</button></a>
+      </div>
+    </div>
+
+</section>
+
+
+   <%- include('../layout/user/userfooter.ejs')%>
