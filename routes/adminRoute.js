@@ -11,10 +11,7 @@ adminRoute.use(bodyparser.urlencoded({ extended: true }))
 
 //admin controller
 const adminController = require('../controllers/adminController')
-// //category controller
-// const categoryController=require('../controllers/adminController')
-// //product controller
-// const productController = require('../controllers/admincontroller')
+
 
 const path = require('path')
 
