@@ -4,7 +4,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
             integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
 
 
@@ -37,23 +36,12 @@
                                 </div>
                                 <div class="col">
                                     <div class="row justify-content-start ">
-                                        <!-- <div class="col">
-                                <img class="irc_mi img-fluid cursor-pointer " src="https://i.imgur.com/jFQo2lD.png"  width="70" height="70" >
-                            </div> -->
                                     </div>
                                 </div>
-                                <!-- <div class="col-auto">
-                        <img class="irc_mi img-fluid bell" src="https://i.imgur.com/uSHMClk.jpg" width="30" height="30"  >
-                    </div> -->
                             </div>
                             <div class="row  mx-auto justify-content-center text-center">
                                 <div class="col-12 mt-3 ">
                                     <nav aria-label="breadcrumb" class="second ">
-                                        <!-- <ol class="breadcrumb indigo lighten-6 first  ">
-                                <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="#"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="#"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase active-2" href="#"><span class="mr-md-3 mr-1">CHECKOUT</span></a></li>
-                            </ol> -->
                                     </nav>
                                 </div>
                             </div>
@@ -87,11 +75,6 @@
                                                     aria-describedby="helpId" value="<%= userData.username %> ">
                                             </div>
                                             <input type="hidden" name="userId" value="<%= userData._id %>">
-                                            <!-- <div class="form-group">
-                                <label for="NAME" class="small text-muted mb-1">Phone Number</label>
-                                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="BBBootstrap Team">
-                            </div> -->
-
                                             <div id="myDiv">
                                                 <label>Address</label>
                                                 <select
@@ -121,37 +104,7 @@
                                             </div>
 
                                             <div class="row no-gutters">
-                                                <!-- <div class="col-sm-4 pr-sm-2">
-                                                <div class="form-group">
-                                                    <label for="NAME" class="small text-muted mb-1">Phone
-                                                        Number</label>
-                                                    <input type="text" class="form-control form-control-sm" name="phone"
-                                                        id="NAME" aria-describedby="helpId"
-                                                        value="<%= userData.address.phone %>">
-                                                </div>
-                                            </div> -->
-                                                <!-- <form id="formCoupon">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="NAME" class="small text-muted mb-1">Coupon
-                                                            Code</label>
-                                                        <input type="text" form="formCoupon"
-                                                            class="form-control form-control-sm" name="code"
-                                                            id="NAMEcode" name="code" aria-describedby="helpId">
 
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-sm-4">
-                                                    <div class="form-group text-end pt-5" >
-                                                        <button style="background-color: rgb(72, 23, 220); color: white; border-radius: 5px;"
-                                                            onclick="applyCoupon('<%= userData.cartTotalPrice %>', $('#NAMEcode').val())"
-                                                            form="formCoupon">Redeem Now</button>
-
-                                                    </div>
-
-                                                </div>
-                                            </form> -->
                                             </div>
 
 
@@ -160,10 +113,6 @@
                                 </div>
                                 <div class="col-md-5">
                                     <div class="card border-0 ">
-                                        <!-- <div class="card-header card-2">
-                                <p class="card-text text-muted mt-md-4  mb-2 space">YOUR ORDER <span class=" small text-muted ml-2 cursor-pointer"></span> </p>
-                                <hr class="my-2">
-                            </div> -->
 
                                         <div class="card-body pt-3">
                                             <% userData.cart.forEach((element)=>{ %>
@@ -246,10 +195,6 @@
                                                             <hr class="my-0">
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="row mb-5 mt-4 ">
-                                    <div classrs
-                                    ="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg">ADD GIFT CODE</button></div>
-                                </div> -->
 
                                                     <form id="formCoupon">
                                                         <div class="col-sm-4">
@@ -287,12 +232,14 @@
                                                     </div>
                                                     <div class="form-group"
                                                         style="color:green; font-family: 'Courier New', Courier, monospace;">
-                                                        <input type="radio" name="test" value="UPI"> Online Payment<br><br>
+                                                        <input type="radio" name="test" value="UPI"> Online
+                                                        Payment<br><br>
                                                     </div>
                                                     <div class="form-group"
-                                                    style="color:green; font-family: 'Courier New', Courier, monospace;">
-                                                    <input type="radio" name="test" value="WALLET"> Use Wallet<br><br>
-                                                </div>
+                                                        style="color:green; font-family: 'Courier New', Courier, monospace;">
+                                                        <input type="radio" name="test" value="WALLET"> Use
+                                                        Wallet<br><br>
+                                                    </div>
                                                     <% if(typeof message !=='undefined' ){ %>
                                                         <h5 style="color: rgb(224, 86, 86);">
                                                             <%= message %>
@@ -494,12 +441,6 @@
 
 
                             }
-                            // handle the response from the server
-                            // console.log(response);
-
-
-
-
 
                         }
                     });
@@ -569,7 +510,6 @@
 
             //main form submit for success
             $('#mainForm').submit(function (e) {
-                // console.log("vanno")
                 e.preventDefault();
                 var formData = $(this).serialize();
                 $.ajax({
@@ -578,8 +518,6 @@
                     data: formData,
                     success: (response) => {
                         // handle the response from the server
-                        // console.log("yes")
-                        // console.log(response);
                         if (response.status) {
                             location.href = '/success'
                         } else if (response.radio) {
@@ -595,18 +533,16 @@
                                 title: 'Oops...',
                                 text: 'Select Address Or Add Address.',
                             })
-                           
-                        }else if(response.razorPayment){
-                            // console.log("vannno");
-                            // console.log(response.order);
+
+                        } else if (response.razorPayment) {
                             razorpayment(response.order)
-                        }else if(response.insufficient){
+                        } else if (response.insufficient) {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
                                 text: 'Insufficient Balence In Your Wallet',
                             })
-                        }else if(response.stock){
+                        } else if (response.stock) {
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Oops...',
@@ -624,63 +560,63 @@
             //online payment
             function razorpayment(order) {
                 var options = {
-                    "key" : "rzp_test_0UJlloUKDWkFXL", // Enter the Key ID generated from the Dashboard
-                    "amount" : order.amount,         // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                    "currency" : "INR",
-                    "name" : "gaDget" ,//your business name
+                    "key": "rzp_test_0UJlloUKDWkFXL", // Enter the Key ID generated from the Dashboard
+                    "amount": order.amount,         // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "gaDget",//your business name
                     "description": "Test Transaction",
                     "image": "",
                     "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                     "handler": function (response) {
-                                    verifyPayment(response, order)
-                                },
-                    "prefill":{
-                        "name" : "Muhammed Nivas P", 
-                        "email" : "muhammednivasprl@gmail.com",
-                        "contact" : 7558936295
+                        verifyPayment(response, order)
                     },
-                    "notes" : {
-                        "address" : "GaDget Private Limited"
+                    "prefill": {
+                        "name": "Muhammed Nivas P",
+                        "email": "muhammednivasprl@gmail.com",
+                        "contact": 7558936295
                     },
-                    "theme" : { "color" : "#3399cc"},
-                    "modal" : {
-                        escape : false,
-                        onDismiss : ()=>{
+                    "notes": {
+                        "address": "GaDget Private Limited"
+                    },
+                    "theme": { "color": "#3399cc" },
+                    "modal": {
+                        escape: false,
+                        onDismiss: () => {
                             Swal.fire({
-                                            icon: 'error',
-                                            title: 'Oops...',
-                                            text: 'Payment failed.',
-                                        })
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Payment failed.',
+                            })
 
                         }
                     }
 
-            }
-            var rzp1 = new Razorpay(options)
-            rzp1.open();
-        }
-     
-        
-        function verifyPayment(payment, order) {
-            console.log(payment);
-            console.log(order+"SDSD");
-                            $.ajax({
-                                url: '/paymentverify',
-                                data: {
-                                    payment,
-                                    order
-                                },
-                                method: "post",
-                success : (response)=>{
-                      if(response.status){
-                        console.log("onlinre success !!");
-                        location.href ='/success'
-                      }
-                        
-
                 }
-            })
-        }
+                var rzp1 = new Razorpay(options)
+                rzp1.open();
+            }
+
+
+            function verifyPayment(payment, order) {
+                // console.log(payment);
+                // console.log(order + "SDSD");
+                $.ajax({
+                    url: '/paymentverify',
+                    data: {
+                        payment,
+                        order
+                    },
+                    method: "post",
+                    success: (response) => {
+                        if (response.status) {
+                            console.log("onlinre success !!");
+                            location.href = '/success'
+                        }
+
+
+                    }
+                })
+            }
 
         </script>
 

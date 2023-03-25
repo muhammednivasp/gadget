@@ -32,217 +32,125 @@
         </div>
 
 
-     
 
-      <section class="section dashboard" >
-       
-        <div class="row">
-         
-          <!-- Left side columns -->
-          <div class="col-lg-12">
-            <div class="row">
-  
-              <!-- Sales Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-  
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-  
-                      <li><a class="dropdown-item" href="#">Today : <%= counttoday %></a></li>
-                      <li><a class="dropdown-item" href="#">This Month : <%= countweekly %></a></li>
-                      <li><a class="dropdown-item" href="#">This Year : <%= countyear %></a></li>
-                    </ul>
-                  </div>
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Sales</h5>
-  
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-cart"></i>
-                      </div>
-                      <div class="ps-3">
-                        <h6><%= sales %></h6>
-                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-  
+
+        <section class="section dashboard">
+
+          <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+              <div class="row">
+
+                <!-- Sales Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card sales-card">
+
+                    <div class="filter">
+                      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                          <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today : <%= counttoday %></a></li>
+                        <li><a class="dropdown-item" href="#">This Month : <%= countweekly %></a></li>
+                        <li><a class="dropdown-item" href="#">This Year : <%= countyear %></a></li>
+                      </ul>
+                    </div>
+
+                    <div class="card-body">
+                      <h5 class="card-title">Sales</h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-cart"></i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>
+                            <%= sales %>
+                          </h6>
+
+                        </div>
                       </div>
                     </div>
+
                   </div>
-  
-                </div>
-              </div><!-- End Sales Card -->
-  
-              <!-- Revenue Card -->
-              <div class="col-xxl-4 col-md-6">
-                <div class="card info-card revenue-card">
-  
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-  
-                      <li><a class="dropdown-item" href="#">Today : <%= today %></a></li>
-                      <li><a class="dropdown-item" href="#">This week : <%= weekly %></a></li>
-                      <li><a class="dropdown-item" href="#">This Year : <%= yearRevenue %></a></li>
-                    </ul>
-                  </div>
-  
-                  <div class="card-body">
-                    <h5 class="card-title"> Revenue </h5>
-  
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi ">₹</i>
-                      </div>
-                      <div class="ps-3">
-                        <h6><%= revenue %></h6>
-                        <!-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> -->
-  
+                </div><!-- End Sales Card -->
+
+                <!-- Revenue Card -->
+                <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card revenue-card">
+
+                    <div class="filter">
+                      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                          <h6>Filter</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">Today : <%= today %></a></li>
+                        <li><a class="dropdown-item" href="#">This week : <%= weekly %></a></li>
+                        <li><a class="dropdown-item" href="#">This Year : <%= yearRevenue %></a></li>
+                      </ul>
+                    </div>
+
+                    <div class="card-body">
+                      <h5 class="card-title"> Revenue </h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi ">₹</i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>
+                            <%= revenue %>
+                          </h6>
+
+                        </div>
                       </div>
                     </div>
+
                   </div>
-  
-                </div>
-              </div><!-- End Revenue Card -->
-  
-              <!-- Customers Card -->
-              <div class="col-xxl-4 col-xl-12">
-  
-                <div class="card info-card customers-card">
-  
-                  <!-- <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-  
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div> -->
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Customers</h5>
-  
-                    <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                        <i class="bi bi-people"></i>
+                </div><!-- End Revenue Card -->
+
+                <!-- Customers Card -->
+                <div class="col-xxl-4 col-xl-12">
+
+                  <div class="card info-card customers-card">
+
+                    <div class="card-body">
+                      <h5 class="card-title">Customers</h5>
+
+                      <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                          <i class="bi bi-people"></i>
+                        </div>
+                        <div class="ps-3">
+                          <h6>
+                            <%= usercount %>
+                          </h6>
+
+                        </div>
                       </div>
-                      <div class="ps-3">
-                        <h6><%= usercount %></h6>
-                        <!-- <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span> -->
-  
-                      </div>
+
                     </div>
-  
                   </div>
                 </div>
               </div>
-            </div>
-              </div><!-- End Customers Card -->
-        </div>
-       
-        <div class="col-lg-12">
-          <div class="row">
-              <!-- <div class="d-flex"> -->
-              <!-- Reports -->
-              <!-- <div class="col-xxl-6 col-xl-12">
-                <div class="card">
-  
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-  
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div>
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Reports <span>/Today</span></h5> -->
-  
-                    <!-- Line Chart -->
-                    <!-- <div id="reportsChart"></div>
-  
-                    <script>
-                      document.addEventListener("DOMContentLoaded", () => {
-                        new ApexCharts(document.querySelector("#reportsChart"), {
-                          series: [{
-                            name: 'Sales',
-                            data: [31, 40, 28, 51, 42, 82, 56],
-                          }, {
-                            name: 'Revenue',
-                            data: [11, 32, 45, 32, 34, 52, 41]
-                          }, {
-                            name: 'Customers',
-                            data: [15, 11, 32, 18, 9, 24, 11]
-                          }],
-                          chart: {
-                            height: 350,
-                            type: 'area',
-                            toolbar: {
-                              show: false
-                            },
-                          },
-                          markers: {
-                            size: 4
-                          },
-                          colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                          fill: {
-                            type: "gradient",
-                            gradient: {
-                              shadeIntensity: 1,
-                              opacityFrom: 0.3,
-                              opacityTo: 0.4,
-                              stops: [0, 90, 100]
-                            }
-                          },
-                          dataLabels: {
-                            enabled: false
-                          },
-                          stroke: {
-                            curve: 'smooth',
-                            width: 2
-                          },
-                          xaxis: {
-                            type: 'datetime',
-                            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                          },
-                          tooltip: {
-                            x: {
-                              format: 'dd/MM/yy HH:mm'
-                            },
-                          }
-                        }).render();
-                      });
-                    </script> -->
-                    <!-- End Line Chart -->
-  
-                  <!-- </div>
-  
-                </div>
-              </div> -->
-            
+            </div><!-- End Customers Card -->
+          </div>
+
+          <div class="col-lg-12">
+            <div class="row">
+
               <!-- End Reports -->
 
-              <div class="col-lg-6" >
+              <div class="col-lg-6">
                 <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">Order Method</h5>
-      
+
                     <!-- Pie Chart -->
                     <canvas id="pieChart" style="max-height: 400px;"></canvas>
                     <script>
@@ -257,7 +165,7 @@
                             ],
                             datasets: [{
                               label: 'total',
-                              data: ["<%= cod %>","<%= online %>", "<%= wallet %>"],
+                              data: ["<%= cod %>", "<%= online %>", "<%= wallet %>"],
                               backgroundColor: [
                                 'rgb(255, 99, 132)',
                                 'rgb(54, 162, 235)',
@@ -270,184 +178,159 @@
                       });
                     </script>
                     <!-- End Pie CHart -->
-      
+
                   </div>
                 </div>
               </div>
 
 
-              
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Order status</h5>
 
-              <!-- Bar Chart -->
-              <canvas id="barChart" style="max-height: 400px;"></canvas>
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
-                    type: 'bar',
-                    data: {
-                      labels: ['Pending', 'Confirmed', 'Shipped', 'Cancelled', 'Delivered', 'Returned'],
-                      datasets: [{
-                        label: 'count',
-                        data: ["<%= Pending %>","<%= Confirmed %>","<%= Shipped %>", "<%= Cancelled %>", "<%= Delivered %>","<%= Returned %>"],
-                        backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(255, 159, 64, 0.2)',
-                          'rgba(255, 205, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          // 'rgba(201, 203, 207, 0.2)'
-                        ],
-                        borderColor: [
-                          'rgb(255, 99, 132)',
-                          'rgb(255, 159, 64)',
-                          'rgb(255, 205, 86)',
-                          'rgb(75, 192, 192)',
-                          'rgb(54, 162, 235)',
-                          'rgb(153, 102, 255)',
-                          // 'rgb(201, 203, 207)'
-                        ],
-                        borderWidth: 1
-                      }]
-                    },
-                    options: {
-                      scales: {
-                        y: {
-                          beginAtZero: true
-                        }
-                      }
-                    }
-                  });
-                });
-              </script>
-              <!-- End Bar CHart -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Order status</h5>
+
+                    <!-- Bar Chart -->
+                    <canvas id="barChart" style="max-height: 400px;"></canvas>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        new Chart(document.querySelector('#barChart'), {
+                          type: 'bar',
+                          data: {
+                            labels: ['Pending', 'Confirmed', 'Shipped', 'Cancelled', 'Delivered', 'Returned'],
+                            datasets: [{
+                              label: 'count',
+                              data: ["<%= Pending %>", "<%= Confirmed %>", "<%= Shipped %>", "<%= Cancelled %>", "<%= Delivered %>", "<%= Returned %>"],
+                              backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                // 'rgba(201, 203, 207, 0.2)'
+                              ],
+                              borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                // 'rgb(201, 203, 207)'
+                              ],
+                              borderWidth: 1
+                            }]
+                          },
+                          options: {
+                            scales: {
+                              y: {
+                                beginAtZero: true
+                              }
+                            }
+                          }
+                        });
+                      });
+                    </script>
+                    <!-- End Bar CHart -->
+
+                  </div>
+                </div>
+              </div>
+
 
             </div>
           </div>
-        </div>
 
-               
-        </div>
-      </div>
-  
-              <!-- Recent Sales -->
-              <div class="col-12 ">
-                <div class="card recent-sales overflow-auto">
-  
-                  <!-- <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Filter</h6>
-                      </li>
-  
-                      <li><a class="dropdown-item" href="#">Today</a></li>
-                      <li><a class="dropdown-item" href="#">This Month</a></li>
-                      <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                  </div> -->
-  
-                  <div class="card-body">
-                    <h5 class="card-title">Recent Sales </h5>
-  
-                    <table class="table table-borderless datatable">
-                      <thead>
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">Customer</th>
-                          <th scope="col">Product</th>
-                          <th scope="col">Quantity</th>
-                          <th scope="col">Total price</th>
-                          <th scope="col">Price</th>
-                          <th scope="col">Discount</th>
-                          <th scope="col">Total</th>
-                          <th scope="col">Method</th>
-                          <th scope="col">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% recentorder.forEach((element,index)=>{ %>
+          <!-- Recent Sales -->
+          <div class="col-12 ">
+            <div class="card recent-sales overflow-auto">
+              <div class="card-body">
+                <h5 class="card-title">Recent Sales </h5>
 
-                       
-                        <tr>
-                          <th scope="row"><a href="#"><%= index+1 %></a></th>
-                          <td><%= element.userId.username %> </td>
-                          <td>
-                          <% element.product.forEach((x,index)=>{ %>
-                         <%= x.productId.productname %> 
-                         <br>
-                          <% }) %>
+                <table class="table table-borderless datatable">
+                  <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Customer</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Total price</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Discount</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Method</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% recentorder.forEach((element,index)=>{ %>
+
+
+                      <tr>
+                        <th scope="row"><a href="#">
+                            <%= index+1 %>
+                          </a></th>
+                        <td>
+                          <%= element.userId.username %>
                         </td>
                         <td>
                           <% element.product.forEach((x,index)=>{ %>
-        
+                            <%= x.productId.productname %>
+                              <br>
+                              <% }) %>
+                        </td>
+                        <td>
+                          <% element.product.forEach((x,index)=>{ %>
+
                             <%=x.quantity%>
                               <br>
                               <% }) %>
                         </td>
                         <td>
                           <% element.product.forEach((x,index)=>{ %>
-                          <%= x.productId.price %>
-                          <br>
-                          <% }) %>
+                            <%= x.productId.price %>
+                              <br>
+                              <% }) %>
                         </td>
-                        <td><span><%= element.totalprice %> </span></td>
-                        <td><span><%= element.discount %> </span></td>
-                        <td><span><%= element.total%> </span></td>
-                        <td><span><%= element.paymentType %> </span></td>
+                        <td><span>
+                            <%= element.totalprice %>
+                          </span></td>
+                        <td><span>
+                            <%= element.discount %>
+                          </span></td>
+                        <td><span>
+                            <%= element.total%>
+                          </span></td>
+                        <td><span>
+                            <%= element.paymentType %>
+                          </span></td>
                         <td>
-                        <% if(element.status == "Cancelled" || element.status == "Returned"){ %>
-                        <span style="color: rgb(233, 18, 18);"><%= element.status %> </span>
-                        <% } else if(element.status == "Return requested" ){ %>
-                         <span style="color: rgb(172, 172, 31);"><%= element.status %> </span>
-                         <% }else{ %>
-                         <span style="color: rgb(54, 235, 8);"><%= element.status %> </span>
-                        <% } %>
-                      </td>
-                        </tr>
+                          <% if(element.status=="Cancelled" || element.status=="Returned" ){ %>
+                            <span style="color: rgb(233, 18, 18);">
+                              <%= element.status %>
+                            </span>
+                            <% } else if(element.status=="Return requested" ){ %>
+                              <span style="color: rgb(172, 172, 31);">
+                                <%= element.status %>
+                              </span>
+                              <% }else{ %>
+                                <span style="color: rgb(54, 235, 8);">
+                                  <%= element.status %>
+                                </span>
+                                <% } %>
+                        </td>
+                      </tr>
 
                       <% }) %>
+                  </tbody>
+                </table>
 
-                        <!-- <tr>
-                          <th scope="row"><a href="#">#2147</a></th>
-                          <td>Bridie Kessler</td>
-                          <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                          <td>$47</td>
-                          <td><span class="badge bg-warning">Pending</span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row"><a href="#">#2049</a></th>
-                          <td>Ashleigh Langosh</td>
-                          <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                          <td>$147</td>
-                          <td><span class="badge bg-success">Approved</span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row"><a href="#">#2644</a></th>
-                          <td>Angus Grady</td>
-                          <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                          <td>$67</td>
-                          <td><span class="badge bg-danger">Rejected</span></td>
-                        </tr>
-                        <tr>
-                          <th scope="row"><a href="#">#2644</a></th>
-                          <td>Raheem Lehner</td>
-                          <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                          <td>$165</td>
-                          <td><span class="badge bg-success">Approved</span></td>
-                        </tr> -->
-                      </tbody>
-                    </table>
-  
-                  </div>
-  
-                </div>
-              </div><!-- End Recent Sales -->
-      </section>
-            </main><!-- End #main -->
+              </div>
+
+            </div>
+          </div><!-- End Recent Sales -->
+        </section>
+      </main><!-- End #main -->
 
       <%- include('../layout/admin/footer.ejs')%>

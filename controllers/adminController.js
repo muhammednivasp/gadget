@@ -4,8 +4,6 @@ const admin = require('../model/adminData')
 //category schema
 const addcategory = require('../model/addcategory')
 
-// const addcategory = require('../model/addcategory')
-
 //product schema
 const productDatas = require('../model/product')
 
@@ -39,17 +37,17 @@ const { log } = require('console')
 let session
 
 //login page
-const adminLogin = async (req, res ,next) => {
+const adminLogin = async (req, res, next) => {
     try {
         res.render('adminlogin')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //login verify
-const loginVerify = async (req, res ,next) => {
+const loginVerify = async (req, res, next) => {
     try {
         const {
             username,
@@ -75,19 +73,19 @@ const loginVerify = async (req, res ,next) => {
         }
     }
     catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //logout
-const adminLogout = async (req, res ,next) => {
+const adminLogout = async (req, res, next) => {
     try {
         req.session.admin_id = null;
         res.redirect('/admin')
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
@@ -95,7 +93,7 @@ const adminLogout = async (req, res ,next) => {
 //========================================================================================================================================================
 
 //category controller
-const Category = async (req, res ,next) => {
+const Category = async (req, res, next) => {
     try {
 
         const category_data = await addcategory.find({})
@@ -103,23 +101,23 @@ const Category = async (req, res ,next) => {
         res.render('category', { categoryDatas: category_data })
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
 //add cat view
-const add_category = async (req, res ,next) => {
+const add_category = async (req, res, next) => {
     try {
         res.render('addcategory')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
 //add category
-const newcategory = async (req, res ,next) => {
+const newcategory = async (req, res, next) => {
     try {
         let uppcategory = req.body.category
         const des = req.body.description
@@ -154,21 +152,13 @@ const newcategory = async (req, res ,next) => {
         }
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
-//category delete
-// const deletecat = async (req, res) => {
-//     let id = req.params.id
-//     // console.log(req.params.id)
-//     await addcategory.deleteOne({ _id: id })
-//     res.redirect('/admin/category')
-// }
-
 //view edit category
-const vieweditcat = async (req, res ,next) => {
+const vieweditcat = async (req, res, next) => {
     try {
         let id = req.params.id
         const categData = await addcategory.findById({ _id: id })
@@ -176,24 +166,21 @@ const vieweditcat = async (req, res ,next) => {
             res.render('editcategory', { viewcat: categData })
         }
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //edit category
-const EditCategory = async (req, res ,next) => {
+const EditCategory = async (req, res, next) => {
     try {
         let newCateg = req.body.newcategory
         newCateg = newCateg.trim();
         let newDesc = req.body.newdescription
 
         let uppercateg = newCateg.toUpperCase()
-        // console.log(uppercateg);
         let id = req.params.id
         const catData = await addcategory.findById({ _id: id })
         const newcat = await addcategory.findOne({ category: uppercateg })
-        console.log(newcat);
-        // console.log(catData);
         if (newcat && newcat._id != id) {
             res.render('editcategory', { message: "Already exist", viewcat: catData })
         } else if (newCateg.length === 0) {
@@ -211,61 +198,58 @@ const EditCategory = async (req, res ,next) => {
             }
         }
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //LIST CATEGORY
-const listCategory = async (req, res ,next) => {
+const listCategory = async (req, res, next) => {
     try {
         const id = req.params.id
         const collection = await addcategory.findOne({ _id: id })
         if (collection.unlist == true) {
             let unlist = await addcategory.updateOne({ _id: id }, { $set: { unlist: false } })
-            // res.redirect('/category')
             res.redirect(req.headers.referer || "/");
         } else {
             let unlist = await addcategory.updateOne({ _id: id }, { $set: { unlist: true } })
-            // res.redirect('/category')
             res.redirect(req.headers.referer || "/");
         }
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //=========================================================================================================================================================
 
 //product controller
-const productShow = async (req, res ,next) => {
+const productShow = async (req, res, next) => {
     try {
         const productdatas = await productDatas.find({}).populate('category')
-        //  console.log("saddwqd00"+productdatas.name);
         res.render('products', { prodDatas: productdatas })
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
 //add product view
-const addprodview = async (req, res ,next) => {
+const addprodview = async (req, res, next) => {
     try {
         const productdatas = await addcategory.find({})
 
         res.render('addproducts', { prodcategory: productdatas })
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
 //add product
-const addproduct = async (req, res ,next) => {
+const addproduct = async (req, res, next) => {
     try {
 
         const arrayimg = []
@@ -285,25 +269,13 @@ const addproduct = async (req, res ,next) => {
         res.redirect('/admin/products')
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
-//delete product
-// const deleteproduct = async (req, res) => {
-//     try {
-//         let id = req.params.id
-//         // console.log(req.params.id)
-//         await productDatas.deleteOne({ _id: id })
-//         res.redirect('/admin/products')
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// }
-
 
 // view edit products
-const vieweditproduct = async (req, res ,next) => {
+const vieweditproduct = async (req, res, next) => {
     try {
         let id = req.params.id
         const productdata = await productDatas.findById({ _id: id }).populate('category').exec()
@@ -313,12 +285,12 @@ const vieweditproduct = async (req, res ,next) => {
             res.render('editproduct', { viewprod: productdata, prodcategory: product_datas })
         }
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 // edit products
-const editproduct = async (req, res ,next) => {
+const editproduct = async (req, res, next) => {
     try {
 
         const id = req.params.id
@@ -338,13 +310,13 @@ const editproduct = async (req, res ,next) => {
         res.redirect('/admin/products')
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //edit image(
-const editimg = async (req, res ,next) => {
+const editimg = async (req, res, next) => {
     try {
         const arrayimg = []
 
@@ -356,27 +328,26 @@ const editimg = async (req, res ,next) => {
         res.redirect('/admin/products/productedit/' + id)
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //delete img
-const deleteimage = async (req, res ,next) => {
+const deleteimage = async (req, res, next) => {
     try {
         const imgid = req.params.imgid
         const prodid = req.params.prodid
         fs.unlink(path.join(__dirname, "../public/images/", imgid), () => { })
         const productimg = await productDatas.updateOne({ _id: prodid }, { $pull: { image: imgid } })
-        // console.log(imgid)
         res.redirect('/admin/products/productedit/' + prodid)
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //unlist and list
-const listProduct = async (req, res ,next) => {
+const listProduct = async (req, res, next) => {
     try {
         const id = req.params.id
         const collection = await productDatas.findOne({ _id: id })
@@ -389,25 +360,25 @@ const listProduct = async (req, res ,next) => {
         }
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 //===========================================================================================================================================================
 //usersview
-const usersView = async (req, res ,next) => {
+const usersView = async (req, res, next) => {
     try {
         const userSetup = await usersSetup.find({})
 
         res.render('userview', { userview: userSetup })
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
 
     }
 }
 
 //user block
-const userBlock = async (req, res ,next) => {
+const userBlock = async (req, res, next) => {
     try {
         const id = req.params.id
         if (!id) {
@@ -417,13 +388,12 @@ const userBlock = async (req, res ,next) => {
         req.session.user = null
         res.redirect('/admin/userview')
     } catch (error) {
-        res.render('error',{message:error.message})
-        // res.status(500).send(error.message);
+        res.render('error', { message: error.message })
     }
 }
 
 //user unblock
-const unBlockuser = async (req, res ,next) => {
+const unBlockuser = async (req, res, next) => {
     try {
         const id = req.params.id
         if (!id) {
@@ -432,18 +402,18 @@ const unBlockuser = async (req, res ,next) => {
         const status = await usersSetup.updateOne({ _id: id }, { $set: { status: false } })
         res.redirect('/admin/userview')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 
 }
 
 //coupen
-const couponview = async (req, res ,next) => {
+const couponview = async (req, res, next) => {
     try {
         const coupondata = await couponDatas.find({})
         res.render("coupon", { couponData: coupondata, moment: moment })
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
@@ -452,14 +422,13 @@ const addcoupons = async (req, res) => {
     try {
         res.render("addcoupons")
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //add coupen
-const couponadd = async (req, res ,next) => {
+const couponadd = async (req, res, next) => {
     try {
-        // console.log(req.body);
         const {
             code,
             expireDate,
@@ -467,9 +436,8 @@ const couponadd = async (req, res ,next) => {
             minimumPurchase,
             off
         } = req.body
-        let Code= code.trim().toUpperCase()
-        // console.log(Codetrim);
-         if(Code.length === 0) {
+        let Code = code.trim().toUpperCase()
+        if (Code.length === 0) {
             res.render('addcoupons', { message: "values required in fields" })
         } else {
             const codein = await couponDatas.findOne({ code: Code })
@@ -487,30 +455,27 @@ const couponadd = async (req, res ,next) => {
         }
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //edit coupon view
-const couponedit = async (req,res,next) => {
+const couponedit = async (req, res, next) => {
     try {
         id = req.params.id
-        //    console.log(id);
         const edit = await couponDatas.findOne({ _id: id })
-        //    console.log(edit);
         if (edit) {
             res.render('editcoupon', { couponData: edit, moment: moment })
         }
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //edit update
-const editedcoupon = async (req,res,next) => {
+const editedcoupon = async (req, res, next) => {
     try {
-        // console.log(req.body+"lplp");
         const {
             newcode,
             newexpireDate,
@@ -519,314 +484,297 @@ const editedcoupon = async (req,res,next) => {
             newoff
         } = req.body
         const id = req.params.id
-        // console.log(newcode+"klkl");
         let Code = newcode.trim().toUpperCase()
-        // console.log(Code+"lll");
-      
-       
-        if(Code.length === 0) {
+
+
+        if (Code.length === 0) {
             res.render('addcoupons', { message: "values required in fields" })
         } else {
             const codein = await couponDatas.findOne({ code: Code })
             if (codein && codein._id != id) {
                 res.render('addcoupons', { message: "Coupon code already exists" })
             } else {
-            await couponDatas.updateOne({ _id: id }, { $set: { code: Code, expirationDate: newexpireDate, maxDiscount: newmaxDiscount, MinPurchaceAmount: newminimumPurchase, percentageOff: newoff } })
-            res.redirect('/admin/coupon')
-        }
+                await couponDatas.updateOne({ _id: id }, { $set: { code: Code, expirationDate: newexpireDate, maxDiscount: newmaxDiscount, MinPurchaceAmount: newminimumPurchase, percentageOff: newoff } })
+                res.redirect('/admin/coupon')
+            }
 
-    } }catch (error) {
-        res.render('error',{message:error.message})
+        }
+    } catch (error) {
+        res.render('error', { message: error.message })
     }
 }
 
 //delete coupon
-const deletecoupon = async (req,res,next) => {
+const deletecoupon = async (req, res, next) => {
     try {
         id = req.params.id
         await couponDatas.deleteOne({ _id: id })
         res.redirect('/admin/coupon')
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //orders
-const orders = async (req, res,next) => {
+const orders = async (req, res, next) => {
     try {
-        const ord= await orderDatas.find({}).populate('userId').populate('product.productId')
+        const ord = await orderDatas.find({}).populate('userId').populate('product.productId')
         const orders = ord.reverse()
         // console.log(ord);
         res.render('orderlisted', { order: orders })
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 
-const changeStatus = async (req, res,next) => {
+const changeStatus = async (req, res, next) => {
     try {
 
         const {
             orderId,
             status
         } = req.body
-        // console.log(orderId +"lllsssgg");
-        const found = await orderDatas.updateOne({orderId: orderId }, { $set: { status: status } })
-        const datas = await orderDatas.findOne({orderId: orderId })
-        //  console.log(datas);
-        if(datas.status==="Returned"){
-            const order=await orderDatas.findOne({orderId:orderId}).populate('product.productId').populate('userId')
-            // console.log(order+"popo");
-            if(order.paymentType == "UPI"|| order.paymentType == "WALLET"){
-              await usersSetup.updateOne({_id:req.session.user._id},{$inc:{wallet:order.total}})
+        const found = await orderDatas.updateOne({ orderId: orderId }, { $set: { status: status } })
+        const datas = await orderDatas.findOne({ orderId: orderId })
+        if (datas.status === "Returned") {
+            const order = await orderDatas.findOne({ orderId: orderId }).populate('product.productId').populate('userId')
+            if (order.paymentType == "UPI" || order.paymentType == "WALLET") {
+                await usersSetup.updateOne({ _id: req.session.user._id }, { $inc: { wallet: order.total } })
             }
-            for(let i=0;i<order.product.length;i++){ 
-            //   console.log(order.product[i].quantity);
-            const quantity = order.product[i].quantity
-             await productDatas.updateOne({_id:order.product[i].productId},{$inc:{stock:quantity}})
+            for (let i = 0; i < order.product.length; i++) {
+                const quantity = order.product[i].quantity
+                await productDatas.updateOne({ _id: order.product[i].productId }, { $inc: { stock: quantity } })
             }
         }
 
         res.redirect('/admin/orders')
-     }catch (error) {
-        res.render('error',{message:error.message})
+    } catch (error) {
+        res.render('error', { message: error.message })
     }
 }
 
 // banner
-const bannershow = async (req,res,next)=>{
+const bannershow = async (req, res, next) => {
     try {
-      const banner = await bannerDatas.find({})
-      res.render("banners",{bannerData:banner})
+        const banner = await bannerDatas.find({})
+        res.render("banners", { bannerData: banner })
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //addbanner
-const addbanner = async (req,res,next)=>{
+const addbanner = async (req, res, next) => {
     try {
         res.render('addbanner')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 
 //insertbanner
-const insertbanner = async (req,res,next)=>{
+const insertbanner = async (req, res, next) => {
     try {
-    const description = req.body.description
-    const bannerimage = req.file.filename
-// console.log(bannerimage);
-    const banner = new bannerDatas({
-        description:description,
-        image:bannerimage
-    })
+        const description = req.body.description
+        const bannerimage = req.file.filename
+        const banner = new bannerDatas({
+            description: description,
+            image: bannerimage
+        })
         const bannerData = await banner.save()
         res.redirect('/admin/banners')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //delete banner
-const deletebanner = async (req,res,next)=>{
+const deletebanner = async (req, res, next) => {
     try {
-    id = req.params.id
-    await bannerDatas.deleteOne({_id:id})
-    res.redirect('/admin/banners')
-        
+        id = req.params.id
+        await bannerDatas.deleteOne({ _id: id })
+        res.redirect('/admin/banners')
+
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //===========================================================================================================================================================
 
 //dashbord
-const dashboard = async (req,res,next)=>{
+const dashboard = async (req, res, next) => {
     try {
         // let revenue = 0
-    const usercount = await usersSetup.find({}).count() 
-    totrevenue = await orderDatas.aggregate([
-        {
-          $match: {
-            status: {
-              $eq: "Delivered"
+        const usercount = await usersSetup.find({}).count()
+        totrevenue = await orderDatas.aggregate([
+            {
+                $match: {
+                    status: {
+                        $eq: "Delivered"
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$total" },
+                    count: { $sum: 1 }
+                }
             }
-          }
-        },
-        {
-          $group: {
-            _id:null,
-            totalAmount: { $sum: "$total" },
-            count: { $sum: 1 }
-          }
-        }
-      ])
-      const revenue = totrevenue.map((item) => {
-        return item.totalAmount;
-      })
-    //   console.log(totrevenue);
-    //   console.log(Revenue);
-    //   if(revenue[0] == null ){
-    //    revenue = 0
-    //   }
-    const revenueOfTheWeek = await orderDatas.aggregate([
-        {
-          $match: {
-            date: {
-              $gte: new Date(new Date().setDate(new Date().getDate() - 7))
-            }, status: {
-              $eq: "Delivered"
+        ])
+        const revenue = totrevenue.map((item) => {
+            return item.totalAmount;
+        })
+        const revenueOfTheWeek = await orderDatas.aggregate([
+            {
+                $match: {
+                    date: {
+                        $gte: new Date(new Date().setDate(new Date().getDate() - 7))
+                    }, status: {
+                        $eq: "Delivered"
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$total" },
+                    count: { $sum: 1 }
+                }
             }
-          }
-        },
-        {
-          $group: {
-            _id: null,
-            totalAmount: { $sum: "$total" },
-            count: { $sum: 1 }
-          }
-        }
-      ])
-      const weekly = revenueOfTheWeek.map((item) => {
-        return item.totalAmount;
-      })
-      const countweekly = revenueOfTheWeek.map((item) => {
-        return item.count;
-      });
-    
-
-   const date = new Date();
-const startOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-const endOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-
-const tdy = await orderDatas.aggregate([
-  {
-    $match: {
-      date: {
-        $gte: startOfDay,
-        $lt: endOfDay
-      },
-      status: "Delivered"
-    }
-  },
-  {
-    $group: {
-      _id: null,
-      totalAmount: { $sum: "$total" },
-      count: { $sum: 1 }
-    }
-  }
-]);
-
-const today = tdy.map((item) => {
-  return item.totalAmount;
-});
-const counttoday = tdy.map((item) => {
-    return item.count;
-  });
-
-// console.log(today);
-
-const revenueyear = await orderDatas.aggregate([
-    {
-      $match: {
-        date: {
-          $gte: new Date(new Date().setDate(new Date().getDate() - 365))
-        }, status: {
-          $eq: "Delivered"
-        }
-      }
-    },
-    {
-      $group: {
-        _id: null,
-        totalAmount: { $sum: "$total" },
-        count: { $sum: 1 }
-      }
-    }
-  ])
-  const yearRevenue = revenueyear.map((item) => {
-    return item.totalAmount;
-  })
-  const countyear = revenueyear.map((item) => {
-    return item.count;
-  });
-
-  const sales = await orderDatas.find({status:"Delivered"}).count()
+        ])
+        const weekly = revenueOfTheWeek.map((item) => {
+            return item.totalAmount;
+        })
+        const countweekly = revenueOfTheWeek.map((item) => {
+            return item.count;
+        });
 
 
-  const cancelledOrdersCount = await orderDatas.aggregate([
-    {
-      $match: { status: "cancelled" }
-    },
-    {
-      $group: {
-        _id: null,
-        count: { $sum: 1 }
-      }
-    }
-  ])
-  const cancelledOrders = cancelledOrdersCount.map((item) => {
-    return item.count;
-  })
+        const date = new Date();
+        const startOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        const endOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 
-  const cod = await orderDatas.find({status:"Delivered",paymentType:"COD"}).count()
-//   console.log(cod+"COD");
-  const online = await orderDatas.find({status:"Delivered",paymentType:"UPI"}).count()
-//   console.log(online+"ONLI");
-  const wallet = await orderDatas.find({status:"Delivered",paymentType:"WALLET"}).count()
-//   console.log(wallet+"GFGFG");
-const Cancelled = await orderDatas.find({status:"Cancelled"}).count()
-const Delivered = await orderDatas.find({status:"Delivered"}).count()
-const Shipped = await orderDatas.find({status:"Shipped"}).count()
-const Confirmed = await orderDatas.find({status:"Confirmed"}).count()
-const Pending = await orderDatas.find({status:"Pending"}).count()
-const Returned = await orderDatas.find({status:"Returned"}).count()
+        const tdy = await orderDatas.aggregate([
+            {
+                $match: {
+                    date: {
+                        $gte: startOfDay,
+                        $lt: endOfDay
+                    },
+                    status: "Delivered"
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$total" },
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
 
-const recentorder = await orderDatas.find({}).populate('product.productId').populate('userId').sort({date:-1})
+        const today = tdy.map((item) => {
+            return item.totalAmount;
+        });
+        const counttoday = tdy.map((item) => {
+            return item.count;
+        });
+
+        // console.log(today);
+
+        const revenueyear = await orderDatas.aggregate([
+            {
+                $match: {
+                    date: {
+                        $gte: new Date(new Date().setDate(new Date().getDate() - 365))
+                    }, status: {
+                        $eq: "Delivered"
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: { $sum: "$total" },
+                    count: { $sum: 1 }
+                }
+            }
+        ])
+        const yearRevenue = revenueyear.map((item) => {
+            return item.totalAmount;
+        })
+        const countyear = revenueyear.map((item) => {
+            return item.count;
+        });
+
+        const sales = await orderDatas.find({ status: "Delivered" }).count()
 
 
-        res.render('dashboard',{usercount:usercount,revenue,weekly,today,yearRevenue,sales,counttoday,
-            countweekly,countyear,cod,online,wallet,Cancelled,Delivered,Shipped,Confirmed,Pending,Returned,recentorder})
+        const cancelledOrdersCount = await orderDatas.aggregate([
+            {
+                $match: { status: "cancelled" }
+            },
+            {
+                $group: {
+                    _id: null,
+                    count: { $sum: 1 }
+                }
+            }
+        ])
+        const cancelledOrders = cancelledOrdersCount.map((item) => {
+            return item.count;
+        })
+
+        const cod = await orderDatas.find({ status: "Delivered", paymentType: "COD" }).count()
+        const online = await orderDatas.find({ status: "Delivered", paymentType: "UPI" }).count()
+        const wallet = await orderDatas.find({ status: "Delivered", paymentType: "WALLET" }).count()
+        const Cancelled = await orderDatas.find({ status: "Cancelled" }).count()
+        const Delivered = await orderDatas.find({ status: "Delivered" }).count()
+        const Shipped = await orderDatas.find({ status: "Shipped" }).count()
+        const Confirmed = await orderDatas.find({ status: "Confirmed" }).count()
+        const Pending = await orderDatas.find({ status: "Pending" }).count()
+        const Returned = await orderDatas.find({ status: "Returned" }).count()
+
+        const recentorder = await orderDatas.find({}).populate('product.productId').populate('userId').sort({ date: -1 })
+
+
+        res.render('dashboard', {
+            usercount: usercount, revenue, weekly, today, yearRevenue, sales, counttoday,
+            countweekly, countyear, cod, online, wallet, Cancelled, Delivered, Shipped, Confirmed, Pending, Returned, recentorder
+        })
 
 
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //====================================================================================================================================================
 
 //get sales
-const sales = async (req,res,next)=>{
+const sales = async (req, res, next) => {
     try {
         res.render('getReport')
     } catch (error) {
-        res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
 //sales report
-const salesReport = async (req,res,next)=>{ 
+const salesReport = async (req, res, next) => {
     try {
-        // console.log(req.body.end)
-        // console.log(req.body.from);
-        // create a new date object with the existing date
-    const existingDate = new Date(req.body.end);
+        const existingDate = new Date(req.body.end);
+        const newDate = new Date(existingDate);
+        newDate.setDate(existingDate.getDate() + 1);
 
-    // add one day to the existing date
-    const newDate = new Date(existingDate);
-    newDate.setDate(existingDate.getDate() + 1);
- 
         if (req.body.from == "" || req.body.end == "") {
             res.render('salesreport', { message: 'All Fields Are Required' })
         } else {
@@ -837,10 +785,10 @@ const salesReport = async (req,res,next)=>{
                 }
             }).populate('product.productId').populate('userId')
             const len = sales.length
-            res.render('salesreport', { sales:sales ,len});
+            res.render('salesreport', { sales: sales, len });
         }
     } catch (error) {
-     res.render('error',{message:error.message})
+        res.render('error', { message: error.message })
     }
 }
 
@@ -854,7 +802,6 @@ module.exports = {
     Category,
     add_category,
     newcategory,
-    // deletecat,
     vieweditcat,
     EditCategory,
     listCategory,
@@ -863,7 +810,6 @@ module.exports = {
     productShow,
     addproduct,
     addprodview,
-    // deleteproduct,
     vieweditproduct,
     editproduct,
     editimg,

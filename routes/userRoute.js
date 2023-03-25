@@ -53,6 +53,9 @@ userRoute.get('/forgotpassword',userController.forgot)
 
 userRoute.get('/about',userController.about)
 
+userRoute.get('/search',userController.viewproducts)
+
+
 //============================================================================
 
 //post
@@ -80,7 +83,7 @@ userRoute.post('/paymentverify',auth.isuserLogin,userController.verifyPayment)
 userRoute.post('/cancelorder', auth.isuserLogin,userController.cancelOrder)
 userRoute.post('/userreturnorder',auth.isuserLogin,userController.returnOrder)
 
-userRoute.post('/search',auth.isuserLogin,userController.search)
+userRoute.post('/search',userController.search)
 
 userRoute.post('/forgotpassword',userController.forgototp)
 userRoute.post('/verifyforgot',userController.verifyforgot)

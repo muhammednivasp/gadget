@@ -13,7 +13,7 @@
           </nav>
         </div>
         <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
-          
+
           <fieldset>
             <!-- <legend>Add product</legend> -->
             <div class="mb-3">
@@ -40,18 +40,14 @@
               <label class="form-label">Stock</label>
               <input type="number" name="stock" id="stock" class="form-control" placeholder="Should be in numbers">
             </div>
-            <!-- <div class="mb-3">
-          <label  class="form-label">Qnty</label>
-          <input type="number" name="qnty" id="" class="form-control" placeholder="Should be in numbers">
-        </div> -->
             <div class="mb-3">
               <label class="form-label">Price</label>
               <input type="number" name="price" id="price" class="form-control" placeholder="Should be in numbers">
             </div>
             <div class="mb-3">
               <label class="form-label">Image</label>
-              <input multiple type="file" name="image" id="" class="form-control" onchange="show(this)" accept="image/*" placeholder=""
-                required>
+              <input multiple type="file" name="image" id="" class="form-control" onchange="show(this)" accept="image/*"
+                placeholder="" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </fieldset>
@@ -90,28 +86,28 @@
         }
       </script>
 
-<script>
-  function validateForm() {
-      let name = document.getElementById("name").value;
-      let description = document.getElementById("description").value;
-      let stock = document.getElementById("stock").value;
-      let price = document.getElementById("price").value;
-      
-      
-      
-      if (name.trim() == "" || stock.trim() == "" ||description.trim() == ""||price.trim() == "") {
-          Swal.fire('All fields are required')
-          return false;
-      }
-      
-      if (stock <= 0) {
-          Swal.fire('Minimum one stock is required')
-          return false;
-      }
-      
-      
-      return true;
-  }
-  </script>
+      <script>
+        function validateForm() {
+          let name = document.getElementById("name").value;
+          let description = document.getElementById("description").value;
+          let stock = document.getElementById("stock").value;
+          let price = document.getElementById("price").value;
+
+
+
+          if (name.trim() == "" || stock.trim() == "" || description.trim() == "" || price.trim() == "") {
+            Swal.fire('All fields are required')
+            return false;
+          }
+
+          if (stock <= 0) {
+            Swal.fire('Minimum one stock is required')
+            return false;
+          }
+
+
+          return true;
+        }
+      </script>
 
       <%- include('../layout/admin/footer.ejs')%>

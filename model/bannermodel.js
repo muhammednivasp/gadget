@@ -10,7 +10,6 @@ const banner = mongoose.Schema({
     },
     url:{
       type:String,
-    //   required:true
     },
 })
 module.exports = mongoose.model('banner', banner)

@@ -7,8 +7,6 @@ const bodyparser = require('body-parser')
 adminRoute.use(bodyparser.json())
 adminRoute.use(bodyparser.urlencoded({ extended: true }))
 
-
-
 //admin controller
 const adminController = require('../controllers/adminController')
 
@@ -46,16 +44,13 @@ adminRoute.get('/logout', auth.isLogin, adminController.adminLogout)
 adminRoute.get('/category', auth.isLogin, adminController.Category)
 adminRoute.get('/category/addcategory', auth.isLogin, adminController.add_category)
 adminRoute.get('/category/unlistcat/:id', auth.isLogin, adminController.listCategory)
-// adminRoute.get('/category/delete/:id', auth.isLogin, adminController.deletecat)
 adminRoute.get('/category/editcategory/:id', auth.isLogin, adminController.vieweditcat)
 
 adminRoute.get('/products', auth.isLogin, adminController.productShow)
 adminRoute.get('/addproducts', auth.isLogin, adminController.addprodview)
-// adminRoute.get('/products/productdelete/:id', auth.isLogin, adminController.deleteproduct)
 adminRoute.get('/products/productedit/:id', auth.isLogin, adminController.vieweditproduct)
 adminRoute.get('/products/unlist/:id', auth.isLogin, adminController.listProduct)
 
-// adminRoute.get('/products/productedit/:id',upload.array("image",3),adminController.editproduct_page)
 adminRoute.get('/deleteimg/:imgid/:prodid',adminController.deleteimage)
 
 adminRoute.get('/userview', auth.isLogin, adminController.usersView)

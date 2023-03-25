@@ -36,32 +36,30 @@
                 <td>
                   <%= x.username%>
                 </td>
-                <!-- <td>
-                  <%= x.address %>
-                </td> -->
-                <td>
-                  <%= x.email %>
-                </td>
-                <td>
-                  <%= x.phonenumber%>
-                </td>
-                <td>
-                  <% if(x.status==true) {%>
-                    <p style="color:red">Blocked</p>
-                    <%}else{%>
-                      <p style="color:green">Active</p>
-                      <%}%>
-                </td>
+                <%= x.address %>
+                  <td>
+                    <%= x.email %>
+                  </td>
+                  <td>
+                    <%= x.phonenumber%>
+                  </td>
+                  <td>
+                    <% if(x.status==true) {%>
+                      <p style="color:red">Blocked</p>
+                      <%}else{%>
+                        <p style="color:green">Active</p>
+                        <%}%>
+                  </td>
 
-                <td>
-                  <% if(x.status!=true) {%>
-                    <button type="button" class="btn btn-danger"><a class="text-decoration-none text-white"
-                        href="/admin/userview/block/<%=x._id %>">Block</a></button>
-                    <%}else{%>
-                      <button class="btn btn-success"><a class="text-decoration-none text-white"
-                          href="/admin/userview/unblock/<%=x._id %>">Unblock</a></button>
-                      <%}%>
-                </td>
+                  <td>
+                    <% if(x.status!=true) {%>
+                      <button type="button" class="btn btn-danger"><a class="text-decoration-none text-white"
+                          href="/admin/userview/block/<%=x._id %>">Block</a></button>
+                      <%}else{%>
+                        <button class="btn btn-success"><a class="text-decoration-none text-white"
+                            href="/admin/userview/unblock/<%=x._id %>">Unblock</a></button>
+                        <%}%>
+                  </td>
               </tr>
               <% }); %>
 

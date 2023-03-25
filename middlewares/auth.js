@@ -59,7 +59,6 @@ const isuserLogout=async(req,res,next)=>{
     try {
         
         if(req.session.user){
-            // req.session.user = null
         return    res.redirect('/')
         }else{
 

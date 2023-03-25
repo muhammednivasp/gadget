@@ -1,24 +1,5 @@
 <%- include('../layout/user/userheader.ejs')%>
 
-    <!-- Start Top Nav -->
-    <!-- <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
-    <div class="container text-light">
-        <div class="w-100 d-flex justify-content-between">
-            <div>
-                <i class="fa fa-envelope mx-2"></i>
-                <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">info@company.com</a>
-                <i class="fa fa-phone mx-2"></i>
-                <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
-            </div>
-            <div>
-                <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
-                <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
-                <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
-                <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
-            </div>
-        </div>
-    </div>
-</nav> -->
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow ">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -46,9 +27,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/allproducts">Shop</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="/contact.html">Contact</a>
-                        </li> -->
                     </ul>
                 </div>
 
@@ -58,50 +36,60 @@
                         Filter
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <% categories.forEach((x,index)=> { %>
-                            <% if(x && x.unlist==false) {%>
-                            <a class="dropdown-item" href="/filter/<%= x._id%>">
-                                <%= x.category %>
-                            </a>
-                            <!-- <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a> -->
-                  <% } %>
-                            <% }) %>
+                        <% if(typeof result !=="undefined" ){%>
+                            <% categories.forEach((x,index)=> { %>
+                                <% if(x && x.unlist==false) {%>
+                                    <a class="dropdown-item" href="/filter/<%= x._id%>?result=<%- result%>">
+                                        <%= x.category %>
+                                    </a>
+                                    <% } %>
+                                        <% }) %>
+                                            <%}else{%>
+                                                <% categories.forEach((x,index)=> { %>
+                                                    <% if(x && x.unlist==false) {%>
+                                                        <a class="dropdown-item" href="/filter/<%= x._id%>">
+                                                            <%= x.category %>
+                                                        </a>
+                                                        <% } %>
+                                                            <% }) %>
+                                                                <% } %>
                     </div>
                 </div>
 
-                <!-- <div class="navbar align-self-center d-flex">
-                <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                        <div class="input-group-text">
-                            <i class="fa fa-fw fa-search"></i>
-                        </div>
-                    </div>
-                </div>
-                <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                    <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                </a> -->
+
 
                 <div class="input-group rounded  me-4" style="width: 150px;">
-                    <form action="/search" method="post">
-                    <input type="text"  style="display: inline;" class="form-control rounded " placeholder="Search" aria-label="Search"  name="searched" aria-describedby="search-addon" />
-                    <button class="input-group-text border-0 float-right" style="display: inline;"  id="search-addon" name="searched">
-                      <i class="fas fa-search"></i>
-                    </button>
-                </form>
-                  </div>
+                    <% if(typeof id !=="undefined" ){ %>
+                        <form action="/search?dataId=<%- id%>" method="post">
+                            <input type="text" style="display: inline;" class="form-control rounded "
+                                placeholder="Search" aria-label="Search" name="searched"
+                                aria-describedby="search-addon" />
+                            <button class="input-group-text border-0 float-right" style="display: inline;"
+                                id="search-addon" name="searched">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                        <% } else {%>
+                            <form action="/search" method="post">
+                                <input type="text" style="display: inline;" class="form-control rounded "
+                                    placeholder="Search" aria-label="Search" name="searched"
+                                    aria-describedby="search-addon" />
+                                <button class="input-group-text border-0 float-right" style="display: inline;"
+                                    id="search-addon" name="searched">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                            <% } %>
+                </div>
 
                 <% if(typeof userData !=='undefined' ){ %>
                     <div class="d-flex">
 
                         <a class="nav-icon position-relative text-decoration-none mr-3" href="/viewcart">
                             <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                            <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">!</span> -->
                         </a>
                         <a class="nav-icon position-relative text-decoration-none" href="/viewprofile">
                             <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                            <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+</span> -->
                         </a>
                         <div class="d-flex justify-content-between align-items-center me-4">
                             <h3> </h3> <span class="heart"><a href="/wishlist"><i class='bx bx-heart'></i></a></span>
@@ -124,13 +112,6 @@
                             <%= userData.username %>
                         </h5>
                     </div>
-
-
-                    <!-- <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">LogOut</a>
-                        </li>
-                    </ul> -->
 
 
                     <% }else {%>
@@ -156,11 +137,6 @@
 
                             <% } %>
 
-                                <!-- <button class="navbar-toggler border-1" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon">LogOut</span>
-                    </button> -->
-
-
             </div>
         </div>
 
@@ -183,7 +159,7 @@
                 </div>
             </div>
 
-            <div class="row bg-white justify-content-center">
+            <div class="row bg-white">
                 <% if(typeof message!=="undefined" ){%>
                     <h1 style="font-size:25px;color:rgb(207, 38, 16);">
                         <%=message %>
@@ -203,17 +179,7 @@
                                                         class="card-img-top" alt="...">
                                                 </a>
                                                 <div class="card-body">
-                                                    <!-- <ul class="list-unstyled d-flex justify-content-between"> -->
-                                                    <!-- <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li> -->
 
-
-                                                    <!-- </ul> -->
                                                     <div>
 
                                                         <div class="d-flex justify-content-between align-items-center">
@@ -244,23 +210,14 @@
                                                     <p class="card-text text-white">
                                                         <%= x.description %>
                                                     </p>
-                                                    <!-- <p class="text-muted">Reviews (24)</p> -->
 
                                                     <div>
-
-                                                        <!-- <button type="button" class="btn btn-success me-2"><a
-                                                                class="text-decoration-none text-white" href="">Buy
-                                                                Now</a></button> -->
-
 
 
                                                         <button class=" btn btn-primary"><a
                                                                 class="text-decoration-none text-white"
                                                                 href="/singleproduct/<%= x._id %>">View
                                                                 Product</a></button>
-
-                                                        <!-- <button class=" btn btn-primary"><a class="text-decoration-none text-white"
-                                                href="/addtocart/____">View Cart</a></button> -->
 
 
                                                     </div>
@@ -276,38 +233,42 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center">
-            <% if(typeof page !== 'undefined'){ %>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <% if (page > 1) { %>
-                    <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <% } %>
-                  </li> 
-          
-                  <% for (let i = 1; i <= countdata; i++) { %>
-                     <% if (i === page) { %>
-                       <li class="page-link text-danger"><%= i %></li>
-                     <% } else { %>
-                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
-                        <% } %>
-                  <% } %>
-          
-                  <li class="page-item">
-                    <% if (page < countdata) { %>
-                    <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                    <% } %>
-                  </li>
-                </ul>
-              </nav>
-          <% } %>
-          </div>
+            <% if(typeof page !=='undefined' ){ %>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <% if (page> 1) { %>
+                                <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <% } %>
+                        </li>
+
+                        <% for (let i=1; i <=countdata; i++) { %>
+                            <% if (i===page) { %>
+                                <li class="page-link text-danger">
+                                    <%= i %>
+                                </li>
+                                <% } else { %>
+                                    <a class="page-link" href="?page=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                    <% } %>
+                                        <% } %>
+
+                                            <li class="page-item">
+                                                <% if (page < countdata) { %>
+                                                    <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                        <span class="sr-only">Next</span>
+                                                    </a>
+                                                    <% } %>
+                                            </li>
+                    </ul>
+                </nav>
+                <% } %>
+        </div>
 
 
     </section>

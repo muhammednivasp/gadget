@@ -50,20 +50,18 @@
                 <td>
                   <button type="button" class="btn btn-secondary"><a class="text-decoration-none text-white"
                       href="/admin/category/editcategory/<%=x._id %>">Edit</a></button>
-                  <!-- <button class="btn btn-danger"><a class="text-decoration-none text-white"
-                      href="/admin/category/delete/<%= x._id %>">Delete</a></button> -->
 
-                      <a href="/admin/category/unlistcat/<%= x._id %>">
-                      <% if(x.unlist==true){%>
+                  <a href="/admin/category/unlistcat/<%= x._id %>">
+                    <% if(x.unlist==true){%>
+                      <button type="button" class="btn btn-warning">
+                        List
+                      </button>
+                      <% }else{%>
                         <button type="button" class="btn btn-warning">
-                          List
+                          Unlist
                         </button>
-                        <% }else{%>
-                          <button type="button" class="btn btn-warning">
-                            Unlist
-                          </button>
-                          <% } %>
-                      </a>
+                        <% } %>
+                  </a>
                 </td>
               </tr>
 
