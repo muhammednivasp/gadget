@@ -60,4 +60,4 @@ const orderdatas = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('Order',orderdatas)
+module.exports = mongoose.model('order',orderdatas)

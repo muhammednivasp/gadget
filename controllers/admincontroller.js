@@ -27,9 +27,11 @@ const fs = require('fs')
 
 //path
 const path = require('path')
-const { log } = require('console')
+// const { log } = require('console')
 
 let session
+
+//======================================================================================================================================================
 
 //login page
 const adminLogin = async (req, res, next) => {
