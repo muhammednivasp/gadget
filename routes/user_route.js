@@ -7,7 +7,7 @@ user_route.use(bodyparser.json())
 user_route.use(bodyparser.urlencoded({ extended: true }))
 
 //controller
-const userController = require('../controllers/userController')
+const usercontroller = require('../controllers/usercontroller')
 
 //path set
 const path = require('path')
@@ -21,73 +21,73 @@ const auth = require('../middlewares/auth')
 
 
 //get
-user_route.get('/', userController.userHome)
-user_route.get('/login', auth.isuserLogout, userController.userLogin)
-user_route.get('/usersignup', userController.userSignup)
-user_route.get('/logout', auth.isuserLogin, userController.logout)
+user_route.get('/', usercontroller.userHome)
+user_route.get('/login', auth.isuserLogout, usercontroller.userLogin)
+user_route.get('/usersignup', usercontroller.userSignup)
+user_route.get('/logout', auth.isuserLogin, usercontroller.logout)
 
-user_route.get('/viewcart', auth.isuserLogin,userController.viewCart)
-user_route.get('/deletecart/:id', auth.isuserLogin,userController.deleteCart)
+user_route.get('/viewcart', auth.isuserLogin,usercontroller.viewCart)
+user_route.get('/deletecart/:id', auth.isuserLogin,usercontroller.deleteCart)
 
-user_route.get('/checkout', auth.isuserLogin,userController.viewcheckout)
-user_route.get('/success', auth.isuserLogin,userController.successCheckout)
-user_route.get('/viewOrder', auth.isuserLogin,userController.viewOrder)
+user_route.get('/checkout', auth.isuserLogin,usercontroller.viewcheckout)
+user_route.get('/success', auth.isuserLogin,usercontroller.successCheckout)
+user_route.get('/viewOrder', auth.isuserLogin,usercontroller.viewOrder)
 
-user_route.get('/viewprofile', auth.isuserLogin,userController.userProfile)
-user_route.get('/editprofile', auth.isuserLogin,userController.editProfile)
+user_route.get('/viewprofile', auth.isuserLogin,usercontroller.userProfile)
+user_route.get('/editprofile', auth.isuserLogin,usercontroller.editProfile)
 
-user_route.get('/address', auth.isuserLogin,userController.addressView)
-user_route.get('/addAddress', auth.isuserLogin,userController.addAddress)
-user_route.get('/editAddress/:id', auth.isuserLogin,userController.editAddress)
-user_route.get('/removeAddress/:id', auth.isuserLogin,userController.removeAddress)
-user_route.get('/changepassword', auth.isuserLogin,userController.ChangePassword)
+user_route.get('/address', auth.isuserLogin,usercontroller.addressView)
+user_route.get('/addAddress', auth.isuserLogin,usercontroller.addAddress)
+user_route.get('/editAddress/:id', auth.isuserLogin,usercontroller.editAddress)
+user_route.get('/removeAddress/:id', auth.isuserLogin,usercontroller.removeAddress)
+user_route.get('/changepassword', auth.isuserLogin,usercontroller.ChangePassword)
 
-user_route.get('/allproducts', userController.viewproducts)
-user_route.get('/filter/:id', userController.filter)
-user_route.get('/singleproduct/:id', userController.SingleProductLoad)
+user_route.get('/allproducts', usercontroller.viewproducts)
+user_route.get('/filter/:id', usercontroller.filter)
+user_route.get('/singleproduct/:id', usercontroller.SingleProductLoad)
 
-user_route.get('/wishlist', auth.isuserLogin,userController.wishlist)
-user_route.get('/addtowish/:id', auth.isuserLogin,userController.addToWishlist)
+user_route.get('/wishlist', auth.isuserLogin,usercontroller.wishlist)
+user_route.get('/addtowish/:id', auth.isuserLogin,usercontroller.addToWishlist)
 
-user_route.get('/forgotpassword',userController.forgot)
+user_route.get('/forgotpassword',usercontroller.forgot)
 
-user_route.get('/about',userController.about)
+user_route.get('/about',usercontroller.about)
 
-user_route.get('/search',userController.viewproducts)
+user_route.get('/search',usercontroller.viewproducts)
 
 
 //============================================================================
 
 //post
-user_route.post('/login' ,userController.loginVerify)
-user_route.post('/usersignup', userController.signupVerify)
-user_route.post('/verifyotp', userController.verifyOtp)
+user_route.post('/login' ,usercontroller.loginVerify)
+user_route.post('/usersignup', usercontroller.signupVerify)
+user_route.post('/verifyotp', usercontroller.verifyOtp)
 
-user_route.post('/change-quantity', auth.isuserLogin,userController.changeQnty)
+user_route.post('/change-quantity', auth.isuserLogin,usercontroller.changeQnty)
 
-user_route.post('/deletewish', auth.isuserLogin,userController.deletewish)
+user_route.post('/deletewish', auth.isuserLogin,usercontroller.deletewish)
 
-user_route.post('/editprofile/:id', auth.isuserLogin,userController.editedProfile)
+user_route.post('/editprofile/:id', auth.isuserLogin,usercontroller.editedProfile)
 
-user_route.post('/addAddress', auth.isuserLogin,userController.insertAddress)
-user_route.post('/editAddress/:id', auth.isuserLogin,userController.editedAddress)
-user_route.post('/changepassword', auth.isuserLogin,userController.changed)
+user_route.post('/addAddress', auth.isuserLogin,usercontroller.insertAddress)
+user_route.post('/editAddress/:id', auth.isuserLogin,usercontroller.editedAddress)
+user_route.post('/changepassword', auth.isuserLogin,usercontroller.changed)
 
-user_route.post('/wishtocart', auth.isuserLogin,userController.wishtoCart)
+user_route.post('/wishtocart', auth.isuserLogin,usercontroller.wishtoCart)
 
-user_route.post('/checkoutAddAddress', auth.isuserLogin,userController.addAddressToCheckout)
-user_route.post('/checkout', auth.isuserLogin,userController.checkout)
-user_route.post('/applyCoupon', auth.isuserLogin,userController.applyCoupon)
-user_route.post('/paymentverify',auth.isuserLogin,userController.verifyPayment)
+user_route.post('/checkoutAddAddress', auth.isuserLogin,usercontroller.addAddressToCheckout)
+user_route.post('/checkout', auth.isuserLogin,usercontroller.checkout)
+user_route.post('/applyCoupon', auth.isuserLogin,usercontroller.applyCoupon)
+user_route.post('/paymentverify',auth.isuserLogin,usercontroller.verifyPayment)
 
-user_route.post('/cancelorder', auth.isuserLogin,userController.cancelOrder)
-user_route.post('/userreturnorder',auth.isuserLogin,userController.returnOrder)
+user_route.post('/cancelorder', auth.isuserLogin,usercontroller.cancelOrder)
+user_route.post('/userreturnorder',auth.isuserLogin,usercontroller.returnOrder)
 
-user_route.post('/search',userController.search)
+user_route.post('/search',usercontroller.search)
 
-user_route.post('/forgotpassword',userController.forgototp)
-user_route.post('/verifyforgot',userController.verifyforgot)
-user_route.post('/changePass',userController.newpass)
+user_route.post('/forgotpassword',usercontroller.forgototp)
+user_route.post('/verifyforgot',usercontroller.verifyforgot)
+user_route.post('/changePass',usercontroller.newpass)
 
 user_route.use(function(req,res,next){
     res.render('404page')

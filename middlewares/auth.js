@@ -10,7 +10,8 @@ const isLogin=async(req,res,next)=>{
         }
         next()
     } catch (error) {
-        console.log(error.message)
+        res.render('error', { message: error.message })
+
         
     }
 }
@@ -24,7 +25,8 @@ const isLogout=async(req,res,next)=>{
         }
         next();
     } catch (error) {
-        console.log(error.message)
+        res.render('error', { message: error.message })
+
         
     }
 }
@@ -49,7 +51,8 @@ const isuserLogin=async(req,res,next)=>{
         }
         
     } catch (error) {
-        console.log(error.message)
+        res.render('error', { message: error.message })
+
         
     }
 }
@@ -65,7 +68,8 @@ const isuserLogout=async(req,res,next)=>{
         }
         next();
     } catch (error) {
-        console.log(error.message)
+        res.render('error', { message: error.message })
+
         
     }
 }
