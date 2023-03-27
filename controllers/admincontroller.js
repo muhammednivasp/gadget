@@ -10,9 +10,6 @@ const productDatas = require('../model/product')
 // user schema
 const usersSetup = require('../model/userdata')
 
-//banner
-const banner = require('../model/bannermodel')
-
 //coupen
 const couponDatas = require('../model/coupon')
 
