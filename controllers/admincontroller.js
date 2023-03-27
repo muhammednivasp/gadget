@@ -29,7 +29,6 @@ const fs = require('fs')
 const path = require('path')
 const { log } = require('console')
 
-
 let session
 
 //login page
@@ -40,7 +39,6 @@ const adminLogin = async (req, res, next) => {
         res.render('error', { message: error.message })
     }
 }
-
 
 //login verify
 const loginVerify = async (req, res, next) => {
@@ -102,6 +100,7 @@ const Category = async (req, res, next) => {
     }
 }
 
+
 //add cat view
 const add_category = async (req, res, next) => {
     try {
@@ -111,6 +110,7 @@ const add_category = async (req, res, next) => {
 
     }
 }
+
 
 //add category
 const newcategory = async (req, res, next) => {
@@ -152,6 +152,7 @@ const newcategory = async (req, res, next) => {
 
     }
 }
+
 
 //view edit category
 const vieweditcat = async (req, res, next) => {
@@ -313,34 +314,34 @@ const editproduct = async (req, res, next) => {
 
 //edit image(
 const editimg = async (req, res, next) => {
-    try {
-        const arrayimg = []
-
-        for (file of req.files) {
-            arrayimg.push(file.filename)
+        try {
+            const arrayimg = []
+    
+            for (file of req.files) {
+                arrayimg.push(file.filename)
+            }
+            const id = req.params.id
+            const editimage = await productDatas.updateOne({ _id: id }, { $push: { image: { $each: arrayimg } } })
+            res.redirect('/admin/products/productedit/' + id)
+    
+        } catch (error) {
+            res.render('error', { message: error.message })
         }
-        const id = req.params.id
-        const editimage = await productDatas.updateOne({ _id: id }, { $push: { image: { $each: arrayimg } } })
-        res.redirect('/admin/products/productedit/' + id)
-
-    } catch (error) {
-        res.render('error', { message: error.message })
     }
-}
-
+    
 //delete img
 const deleteimage = async (req, res, next) => {
-    try {
-        const imgid = req.params.imgid
-        const prodid = req.params.prodid
-        fs.unlink(path.join(__dirname, "../public/images/", imgid), () => { })
-        const productimg = await productDatas.updateOne({ _id: prodid }, { $pull: { image: imgid } })
-        res.redirect('/admin/products/productedit/' + prodid)
-
-    } catch (error) {
-        res.render('error', { message: error.message })
+        try {
+            const imgid = req.params.imgid
+            const prodid = req.params.prodid
+            fs.unlink(path.join(__dirname, "../public/images/", imgid), () => { })
+            const productimg = await productDatas.updateOne({ _id: prodid }, { $pull: { image: imgid } })
+            res.redirect('/admin/products/productedit/' + prodid)
+    
+        } catch (error) {
+            res.render('error', { message: error.message })
+        }
     }
-}
 
 //unlist and list
 const listProduct = async (req, res, next) => {

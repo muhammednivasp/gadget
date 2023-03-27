@@ -92,5 +92,4 @@ const userdatas = mongoose.Schema({
 
 })
 
-const user = mongoose.model('user', userdatas)
-module.exports = user
+module.exports = mongoose.model('user', userdatas)

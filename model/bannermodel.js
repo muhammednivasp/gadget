@@ -13,5 +13,4 @@ const bannerdata = mongoose.Schema({
     },
 })
 
-const banner = mongoose.model('banner', bannerdata)
-module.exports = banner
+module.exports = mongoose.model('banner', bannerdata)
