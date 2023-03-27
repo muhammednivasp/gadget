@@ -29,7 +29,7 @@ var instance = new Razorpay({
 });
 
 const { ObjectId } = require('mongodb');
-const { response } = require('../routes/userRoute');
+const { response } = require('../routes/user_route');
 const { updateOne } = require('../model/userData');
 const userData = require('../model/userData');
 const bannerDatas = require('../model/bannermodel')

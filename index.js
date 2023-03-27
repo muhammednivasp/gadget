@@ -47,11 +47,11 @@ app.use(session({
 }
 ))
 
-const adminRoute = require('./routes/adminRoute')
-app.use('/admin', adminRoute)
+const admin_route = require('./routes/admin_route')
+app.use('/admin', admin_route)
 
-const userRoute = require('./routes/userRoute')
-app.use('/', userRoute)
+const user_route = require('./routes/user_route')
+app.use('/', user_route)
 
 app.listen(3000, () => {
     console.log('server started')
