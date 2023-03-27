@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const bannerdata = mongoose.Schema({
+const bannerdata = new mongoose.Schema({
    description: {
         type: String,
         required: true
