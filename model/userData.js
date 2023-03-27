@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { ObjectId } = require("mongodb");
 
-const userDatas = mongoose.Schema({
+const userdatas = mongoose.Schema({
 
   username: {
     type: String,
@@ -91,4 +91,4 @@ const userDatas = mongoose.Schema({
 
 
 })
-module.exports = mongoose.model('user', userDatas)
+module.exports = mongoose.model('user', userdatas)

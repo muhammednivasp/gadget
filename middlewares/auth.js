@@ -1,4 +1,4 @@
-const user = require("../model/userData")
+const user = require("../model/userdata")
 
 const isLogin=async(req,res,next)=>{
     try {

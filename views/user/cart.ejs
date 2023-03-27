@@ -11,7 +11,7 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
               <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
             </div>
-            <% userData.cart.forEach((cart)=>{%>
+            <% userdata.cart.forEach((cart)=>{%>
 
               <div class="card rounded-3 mb-4">
                 <div class="card-body p-4">
@@ -79,14 +79,14 @@
 
                       <h5>Total cost:</h5>
                       <label id="total" class="form-label" for="form1">
-                        <%= userData.carttotalprice %>
+                        <%= userdata.carttotalprice %>
                       </label>
                       <h5>INR</h5>
                     </div>
 
                   </div>
                 </div>
-                <% if(userData.carttotalprice !=0) { %>
+                <% if(userdata.carttotalprice !=0) { %>
                   <div class="card">
                     <div class="card-body">
                       <a href="/checkout" class="text-decoration-none"> <button type="button"

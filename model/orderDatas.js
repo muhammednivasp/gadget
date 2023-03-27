@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const orderDatas = new mongoose.Schema({
+const orderdatas = new mongoose.Schema({
   userId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'user',
@@ -61,4 +61,4 @@ const orderDatas = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Order',orderDatas)
+module.exports = mongoose.model('Order',orderdatas)

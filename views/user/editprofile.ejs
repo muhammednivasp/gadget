@@ -11,9 +11,9 @@
             </nav>
           </div>
         </div>
-        <% if(typeof userData!=='undefined' ){ %>
+        <% if(typeof userdata!=='undefined' ){ %>
 
-          <form action="/editprofile/<%=userData._id%>" method="post">
+          <form action="/editprofile/<%=userdata._id%>" method="post">
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-sm-9">
                       <input type="text" name="username" class="form-control form-control-line"
-                        value="<%=userData.username %>">
+                        value="<%=userdata.username %>">
                     </div>
                   </div>
                   <hr>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-sm-9">
                       <input type="text" name="email" class="form-control form-control-line"
-                        value="<%=userData.email %>">
+                        value="<%=userdata.email %>">
                     </div>
                   </div>
                   <hr>

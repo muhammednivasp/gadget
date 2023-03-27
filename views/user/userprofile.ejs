@@ -12,7 +12,7 @@
             </nav>
           </div>
         </div>
-        <% if(typeof userData!=='undefined' ){ %>
+        <% if(typeof userdata!=='undefined' ){ %>
           <div class="row">
             <div class="col-lg-4">
               <div class="card mb-4">
@@ -21,11 +21,11 @@
                     src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"
                     alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                   <h5 class="my-3">
-                    <%= userData.username %>
+                    <%= userdata.username %>
                   </h5>
                   <h1 class=" mb-1" style="color: rgb(32, 199, 88);">gaDget</h1>
                   <h5 class="my-3">
-                    My Wallet : <%= userData.wallet %>
+                    My Wallet : <%= userdata.wallet %>
                   </h5>
                   <div class="d-flex justify-content-center mb-2">
                   </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-sm-9">
                       <p class=" mb-0" style=" color:black ">
-                        <%= userData.username%>
+                        <%= userdata.username%>
                       </p>
                     </div>
                   </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-sm-9">
                       <p class=" mb-0" style="color: black;">
-                        <%= userData.email %>
+                        <%= userdata.email %>
                       </p>
                     </div>
                   </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-sm-9">
                       <p class=" mb-0" style="color: black;">
-                        <%= userData.phonenumber %>
+                        <%= userdata.phonenumber %>
                       </p>
                     </div>
                   </div>

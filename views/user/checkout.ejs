@@ -72,16 +72,16 @@
                                             <div class="form-group">
                                                 <label for="NAME" class="small text-muted mb-1">full Name</label>
                                                 <input type="text" class="form-control form-control-sm" id="NAME"
-                                                    aria-describedby="helpId" value="<%= userData.username %> ">
+                                                    aria-describedby="helpId" value="<%= userdata.username %> ">
                                             </div>
-                                            <input type="hidden" name="userId" value="<%= userData._id %>">
+                                            <input type="hidden" name="userId" value="<%= userdata._id %>">
                                             <div id="myDiv">
                                                 <label>Address</label>
                                                 <select
                                                     style="height: 50px; border-radius: 5px; border-color: rgb(202, 201, 201); color: rgb(140, 135, 135);"
                                                     name="address">
                                                     <option selected> select address </option>
-                                                    <% userData.address.forEach((element)=>{ %>
+                                                    <% userdata.address.forEach((element)=>{ %>
                                                         <option
                                                             value="<%=element.name %><%=element.houseName %>,<%= element.phone %>,<%=element.street %>,<%=element.district %> <%=element.state %>,<%=element.pincode %> <%=element.country %>">
                                                             <%=element.name %>,<%=element.houseName %>,<%= element.phone
@@ -115,7 +115,7 @@
                                     <div class="card border-0 ">
 
                                         <div class="card-body pt-3">
-                                            <% userData.cart.forEach((element)=>{ %>
+                                            <% userdata.cart.forEach((element)=>{ %>
                                                 <div class="row  justify-content-between">
                                                     <div class="col-auto col-md-7">
                                                         <div class="media flex-column flex-sm-row">
@@ -163,9 +163,9 @@
                                                                 </div>
                                                                 <div class="flex-sm-col col-auto">
                                                                     <p class="mb-1"><b>
-                                                                            <%= userData.carttotalprice %>
+                                                                            <%= userdata.carttotalprice %>
                                                                                 <input type="hidden" name="total"
-                                                                                    value="<%= userData.carttotalprice %>">
+                                                                                    value="<%= userdata.carttotalprice %>">
                                                                         </b></p>
                                                                 </div>
                                                             </div>
@@ -185,11 +185,11 @@
                                                                 </div>
                                                                 <div class="flex-sm-col col-auto">
                                                                     <p id="total" class="mb-1"><b>RS : <%=
-                                                                                userData.carttotalprice %>
+                                                                                userdata.carttotalprice %>
 
                                                                         </b></p>
                                                                     <input id="total1" name="total1" type="hidden"
-                                                                        value="<%= userData.carttotalprice %>">
+                                                                        value="<%= userdata.carttotalprice %>">
                                                                 </div>
                                                             </div>
                                                             <hr class="my-0">
@@ -208,7 +208,7 @@
                                                             </div>
                                                             <button
                                                                 style="background-color: aquamarine; color: black; border-radius: 5px;"
-                                                                onclick="applyCoupon('<%= userData.carttotalprice %>', $('#NAMEcode').val())"
+                                                                onclick="applyCoupon('<%= userdata.carttotalprice %>', $('#NAMEcode').val())"
                                                                 form="formCoupon">Redeem Now</button>
 
                                                         </div>

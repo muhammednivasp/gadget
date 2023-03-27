@@ -1,5 +1,5 @@
 //login schema
-const admin = require('../model/adminData')
+const admin = require('../model/admindata')
 
 //category schema
 const addcategory = require('../model/addcategory')
@@ -8,7 +8,7 @@ const addcategory = require('../model/addcategory')
 const productDatas = require('../model/product')
 
 // user schema
-const usersSetup = require('../model/userData')
+const usersSetup = require('../model/userdata')
 
 //banner
 const banner = require('../model/bannermodel')
@@ -20,7 +20,7 @@ const couponDatas = require('../model/coupon')
 const bannerDatas = require('../model/bannermodel')
 
 //orders
-const orderDatas = require('../model/orderDatas')
+const orderdatas = require('../model/orderdatas')
 
 //moment
 const moment = require('moment')
@@ -54,10 +54,10 @@ const loginVerify = async (req, res, next) => {
             password
         } = req.body
 
-        const adminData = await admin.findOne({ username: username })
-        if (adminData) {
-            if (password === adminData.password) {
-                req.session.admin_id = adminData._id
+        const admindata = await admin.findOne({ username: username })
+        if (admindata) {
+            if (password === admindata.password) {
+                req.session.admin_id = admindata._id
                 res.redirect('/admin/dashboard')
             }
             else {
@@ -520,7 +520,7 @@ const deletecoupon = async (req, res, next) => {
 //orders
 const orders = async (req, res, next) => {
     try {
-        const ord = await orderDatas.find({}).populate('userId').populate('product.productId')
+        const ord = await orderdatas.find({}).populate('userId').populate('product.productId')
         const orders = ord.reverse()
         // console.log(ord);
         res.render('orderlisted', { order: orders })
@@ -538,10 +538,10 @@ const changeStatus = async (req, res, next) => {
             orderId,
             status
         } = req.body
-        const found = await orderDatas.updateOne({ orderId: orderId }, { $set: { status: status } })
-        const datas = await orderDatas.findOne({ orderId: orderId })
+        const found = await orderdatas.updateOne({ orderId: orderId }, { $set: { status: status } })
+        const datas = await orderdatas.findOne({ orderId: orderId })
         if (datas.status === "Returned") {
-            const order = await orderDatas.findOne({ orderId: orderId }).populate('product.productId').populate('userId')
+            const order = await orderdatas.findOne({ orderId: orderId }).populate('product.productId').populate('userId')
             if (order.paymentType == "UPI" || order.paymentType == "WALLET") {
                 await usersSetup.updateOne({ _id: req.session.user._id }, { $inc: { wallet: order.total } })
             }
@@ -613,7 +613,7 @@ const dashboard = async (req, res, next) => {
     try {
         // let revenue = 0
         const usercount = await usersSetup.find({}).count()
-        totrevenue = await orderDatas.aggregate([
+        totrevenue = await orderdatas.aggregate([
             {
                 $match: {
                     status: {
@@ -632,7 +632,7 @@ const dashboard = async (req, res, next) => {
         const revenue = totrevenue.map((item) => {
             return item.totalAmount;
         })
-        const revenueOfTheWeek = await orderDatas.aggregate([
+        const revenueOfTheWeek = await orderdatas.aggregate([
             {
                 $match: {
                     date: {
@@ -662,7 +662,7 @@ const dashboard = async (req, res, next) => {
         const startOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         const endOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
 
-        const tdy = await orderDatas.aggregate([
+        const tdy = await orderdatas.aggregate([
             {
                 $match: {
                     date: {
@@ -690,7 +690,7 @@ const dashboard = async (req, res, next) => {
 
         // console.log(today);
 
-        const revenueyear = await orderDatas.aggregate([
+        const revenueyear = await orderdatas.aggregate([
             {
                 $match: {
                     date: {
@@ -715,10 +715,10 @@ const dashboard = async (req, res, next) => {
             return item.count;
         });
 
-        const sales = await orderDatas.find({ status: "Delivered" }).count()
+        const sales = await orderdatas.find({ status: "Delivered" }).count()
 
 
-        const cancelledOrdersCount = await orderDatas.aggregate([
+        const cancelledOrdersCount = await orderdatas.aggregate([
             {
                 $match: { status: "cancelled" }
             },
@@ -733,17 +733,17 @@ const dashboard = async (req, res, next) => {
             return item.count;
         })
 
-        const cod = await orderDatas.find({ status: "Delivered", paymentType: "COD" }).count()
-        const online = await orderDatas.find({ status: "Delivered", paymentType: "UPI" }).count()
-        const wallet = await orderDatas.find({ status: "Delivered", paymentType: "WALLET" }).count()
-        const Cancelled = await orderDatas.find({ status: "Cancelled" }).count()
-        const Delivered = await orderDatas.find({ status: "Delivered" }).count()
-        const Shipped = await orderDatas.find({ status: "Shipped" }).count()
-        const Confirmed = await orderDatas.find({ status: "Confirmed" }).count()
-        const Pending = await orderDatas.find({ status: "Pending" }).count()
-        const Returned = await orderDatas.find({ status: "Returned" }).count()
+        const cod = await orderdatas.find({ status: "Delivered", paymentType: "COD" }).count()
+        const online = await orderdatas.find({ status: "Delivered", paymentType: "UPI" }).count()
+        const wallet = await orderdatas.find({ status: "Delivered", paymentType: "WALLET" }).count()
+        const Cancelled = await orderdatas.find({ status: "Cancelled" }).count()
+        const Delivered = await orderdatas.find({ status: "Delivered" }).count()
+        const Shipped = await orderdatas.find({ status: "Shipped" }).count()
+        const Confirmed = await orderdatas.find({ status: "Confirmed" }).count()
+        const Pending = await orderdatas.find({ status: "Pending" }).count()
+        const Returned = await orderdatas.find({ status: "Returned" }).count()
 
-        const recentorder = await orderDatas.find({}).populate('product.productId').populate('userId').sort({ date: -1 })
+        const recentorder = await orderdatas.find({}).populate('product.productId').populate('userId').sort({ date: -1 })
 
 
         res.render('dashboard', {
@@ -778,7 +778,7 @@ const salesReport = async (req, res, next) => {
         if (req.body.from == "" || req.body.end == "") {
             res.render('salesreport', { message: 'All Fields Are Required' })
         } else {
-            const sales = await orderDatas.find({
+            const sales = await orderdatas.find({
                 status: "Delivered", date: {
                     $gte: new Date(req.body.from),
                     $lte: new Date(newDate)
