@@ -1,11 +1,11 @@
 //schema
-const userdatas = require('../model/userdata')
+const userdatas = require('../model/userdata1')
 const bcrypt = require('bcrypt')
 const product = require('../model/product')
 const categories = require('../model/addcategory')
 const Swal = require('sweetalert2')
 const MongoClient = require('mongodb').MongoClient;
-const orderdatas = require("../model/orderdatas")
+const orderdatas = require("../model/orderdatas1")
 const couponData = require('../model/coupon')
 
 const { json } = require('body-parser');
@@ -30,8 +30,8 @@ var instance = new Razorpay({
 
 const { ObjectId } = require('mongodb');
 const { response } = require('../routes/user_route');
-const { updateOne } = require('../model/userdata');
-const userdata = require('../model/userdata');
+const { updateOne } = require('../model/userdata1');
+const userdata = require('../model/userdata1');
 const bannerDatas = require('../model/bannermodel')
 const { log } = require('console')
 

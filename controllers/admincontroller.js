@@ -9,7 +9,7 @@ const adminmodel = require('../model/admindata1')
 const addcategory = require('../model/addcategory')
 
 // user schema
-const usersSetup = require('../model/userdata')
+const usersSetup = require('../model/userdata1')
 
 //coupen
 const couponDatas = require('../model/coupon')
@@ -18,7 +18,7 @@ const couponDatas = require('../model/coupon')
 const bannerDatas = require('../model/bannermodel')
 
 //orders
-const orderdatas = require('../model/orderdatas')
+const orderdatas = require('../model/orderdatas1')
 
 //moment
 const moment = require('moment')
