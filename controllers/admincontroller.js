@@ -1,11 +1,12 @@
+//product schema
+const productDatas = require('../model/product')
+
 //login schema
 const adminmodel = require('../model/admindata')
 
+
 //category schema
 const addcategory = require('../model/addcategory')
-
-//product schema
-const productDatas = require('../model/product')
 
 // user schema
 const usersSetup = require('../model/userdata')
