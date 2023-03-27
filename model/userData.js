@@ -91,4 +91,6 @@ const userdatas = mongoose.Schema({
 
 
 })
-module.exports = mongoose.model('user', userdatas)
+
+const user = mongoose.model('user', userdatas)
+module.exports = user

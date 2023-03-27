@@ -30,5 +30,5 @@ const couponDatas = new  mongoose.Schema({
       
     }
   });
-
-  module.exports = mongoose.model('Coupon', couponDatas);
+  const coupon = mongoose.model('Coupon', couponDatas);
+  module.exports = coupon

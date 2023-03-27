@@ -9,4 +9,5 @@ const admindata = mongoose.Schema({
         required: true
     }
 })
-module.exports = mongoose.model('admin', admindata)
+const admin = mongoose.model('admin', admindata)
+module.exports = admin;

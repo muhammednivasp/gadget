@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const banner = mongoose.Schema({
+const bannerdata = mongoose.Schema({
    description: {
         type: String,
         required: true
@@ -12,4 +12,6 @@ const banner = mongoose.Schema({
       type:String,
     },
 })
-module.exports = mongoose.model('banner', banner)
+
+const banner = mongoose.model('banner', bannerdata)
+module.exports = banner

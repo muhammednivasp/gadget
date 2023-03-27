@@ -1,5 +1,5 @@
 //login schema
-const admin = require('../model/admindata')
+const adminmodel = require('../model/admindata')
 
 //category schema
 const addcategory = require('../model/addcategory')
@@ -53,7 +53,7 @@ const loginVerify = async (req, res, next) => {
             password
         } = req.body
 
-        const admindata = await admin.findOne({ username: username })
+        const admindata = await adminmodel.findOne({ username: username })
         if (admindata) {
             if (password === admindata.password) {
                 req.session.admin_id = admindata._id

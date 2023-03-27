@@ -14,4 +14,6 @@ const addcategory = mongoose.Schema({
         default: false
     }
 })
-module.exports = mongoose.model('category', addcategory)
+
+const category = mongoose.model('category', addcategory)
+module.exports = category
