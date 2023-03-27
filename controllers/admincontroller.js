@@ -2,7 +2,7 @@
 const productDatas = require('../model/product')
 
 //login schema
-const adminmodel = require('../model/admindata')
+const adminmodel = require('../model/admindata1')
 
 
 //category schema

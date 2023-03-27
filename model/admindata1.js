@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const admindata = new mongoose.Schema({ 
+const admindata1 = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -9,5 +9,4 @@ const admindata = new mongoose.Schema({
         required: true
     }
 })
-const admin = mongoose.model('admin', admindata);
-module.exports =  admin;
+module.exports = mongoose.model('admin', admindata1)
