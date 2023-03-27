@@ -28,7 +28,7 @@ const session = require('express-session');
 
 //path
 const path = require('path')
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname,'public')))
 
 
 //CACHE CONTROL
@@ -47,11 +47,11 @@ app.use(session({
 }
 ))
 
-const admin_route = require('./routes/admin_route')
-app.use('/admin', admin_route)
+const adminroute = require('./routes/admin_route')
+app.use('/admin', adminroute)
 
-const user_route = require('./routes/user_route')
-app.use('/', user_route)
+const userroute = require('./routes/user_route')
+app.use('/', userroute)
 
 app.listen(3000, () => {
     console.log('server started')
