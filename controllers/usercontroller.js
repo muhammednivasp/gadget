@@ -316,8 +316,8 @@ const changeQnty = async (req, res) => {
 const viewcheckout = async (req, res) => {
   try {
     id = req.session.user._id
-    const userdatas = await userdatas.findOne({ _id: id }).populate('cart.product')
-    res.render('checkout', { userdata: userdatas })
+    const user = await userdatas.findOne({ _id: id }).populate('cart.product')
+    res.render('checkout', { userdata: user })
   } catch (error) {
     res.render('error', { message: error.message })
   }
