@@ -212,9 +212,9 @@ const viewCart = async (req, res) => {
 
     const id = req.session.user._id;
 
-    const userdatas = await userdatas.findOne({ _id: id }).populate('cart.product')
+    const userdata = await userdatas.findOne({ _id: id }).populate('cart.product')
 
-    res.render('cart', { userdata: userdatas })
+    res.render('cart', { userdata: userdata })
   } catch (error) {
     res.render('error', { message: error.message })
   }
