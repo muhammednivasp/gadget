@@ -262,7 +262,7 @@ const deleteCart = async (req, res) => {
 
     id = req.params.id
     const userid = req.session.user._id;
-    const userdatas = await userdatas.findOne({ _id: userid }).populate('cart.product')
+    const user = await userdatas.findOne({ _id: userid }).populate('cart.product')
     const deleted = await userdatas.updateOne({ _id: userid }, { $pull: { cart: { product: id } } })
 
     const cart = await userdatas.findOne({ _id: req.session.user._id })
