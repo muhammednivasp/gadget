@@ -1,8 +1,6 @@
 {
   "name": "pixelcamera",
   "version": "1.0.0",
-  "description": "",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
@@ -32,5 +30,16 @@
     "sweetalert2": "^11.4.8",
     "twilio": "^4.8.0",
     "uuid": "^9.0.0"
-  }
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhammednivasp/gadget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/muhammednivasp/gadget/issues"
+  },
+  "homepage": "https://github.com/muhammednivasp/gadget#readme",
+  "description": ""
 }
