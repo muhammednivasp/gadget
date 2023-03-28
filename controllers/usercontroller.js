@@ -32,7 +32,7 @@ const { ObjectId } = require('mongodb');
 const { response } = require('../routes/user_route');
 const { updateOne } = require('../model/userdata1');
 const userdata = require('../model/userdata1');
-const bannerDatas = require('../model/bannermodel')
+const bannerdatas = require('../model/bannermodel')
 const { log } = require('console')
 
 var totalprice = 0
@@ -64,14 +64,14 @@ const userHome = async (req, res) => {
   try {
     const productDetails = await product.find({}).populate('category').limit(3)
     const categoryDetails = await categories.find({})
-    const banner = await bannerDatas.find({})
+    const banner = await bannerdatas.find({})
     if (productDetails) {
       if (req.session.user) {
         const userdatas = req.session.user
-        res.render('userhome', { userdata: userdatas, product: productDetails, categories: categoryDetails, bannerData: banner })
+        res.render('userhome', { userdata: userdatas, product: productDetails, categories: categoryDetails, bannerdata: banner })
       } else {
         let userdatas
-        res.render('userhome', { userdata: userdatas, product: productDetails, categories: categoryDetails, bannerData: banner })
+        res.render('userhome', { userdata: userdatas, product: productDetails, categories: categoryDetails, bannerdata: banner })
       }
 
     }

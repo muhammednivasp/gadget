@@ -15,7 +15,7 @@ const usersSetup = require('../model/userdata1')
 const couponDatas = require('../model/coupon')
 
 //banner
-const bannerDatas = require('../model/bannermodel')
+const bannerdatas = require('../model/bannermodel')
 
 //orders
 const orderdatas = require('../model/orderdatas1')
@@ -557,11 +557,13 @@ const changeStatus = async (req, res, next) => {
     }
 }
 
+//=======================================================================================================================================================
+
 // banner
 const bannershow = async (req, res, next) => {
     try {
-        const banner = await bannerDatas.find({})
-        res.render("banners", { bannerData: banner })
+        const banner = await bannerdatas.find({})
+        res.render("banners", { bannerdata: banner })
 
     } catch (error) {
         res.render('error', { message: error.message })
@@ -583,7 +585,7 @@ const insertbanner = async (req, res, next) => {
     try {
         const description = req.body.description
         const bannerimage = req.file.filename
-        const banner = new bannerDatas({
+        const banner = new bannerdatas({
             description: description,
             image: bannerimage
         })
@@ -598,7 +600,7 @@ const insertbanner = async (req, res, next) => {
 const deletebanner = async (req, res, next) => {
     try {
         id = req.params.id
-        await bannerDatas.deleteOne({ _id: id })
+        await bannerdatas.deleteOne({ _id: id })
         res.redirect('/admin/banners')
 
     } catch (error) {
