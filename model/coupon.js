@@ -27,7 +27,6 @@ const couponDatas = new  mongoose.Schema({
     userUsed:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-      
     }
   });
   module.exports = mongoose.model('coupon', couponDatas);
