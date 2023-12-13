@@ -719,10 +719,10 @@ const addressView = async (req, res) => {
 //add address
 const addAddress = async (req, res) => {
   try {
-    // const id = req.session.user._id
-    // const userdetails = await userdatas.findOne({ _id: id })
+    const id = req.session.user._id
+    const userdetails = await userdatas.findOne({ _id: id })
 
-    res.render('addAddress')
+    res.render('addaddress', { userdata: userdetails })
   } catch (error) {
     res.render('error', { message: error.message })
   }
