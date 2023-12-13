@@ -192,7 +192,7 @@ const verifyOtp = async (req, res, next) => {
       const user = await userdata.save();
       if (user) {
         req.session.user = details
-        res.redirect('/login');
+        res.render('userlogin');
       } else {
         res.render('otp', { message: "wrong otp" })
       }
@@ -598,11 +598,11 @@ const viewOrder = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1
     const limit = 6
-    const countorders = await orderdatas.find({}).countDocuments()
-    let countdata = Math.ceil(countorders / limit)
-    const order = await orderdatas.find({}).populate('product.productId').limit(limit * 1).skip((page - 1) * limit).sort({ date: -1 }).exec()
-
     const id = req.session.user._id
+    const countorders = await orderdatas.find({userId:id}).countDocuments()
+    let countdata = Math.ceil(countorders / limit)
+    const order = await orderdatas.find({userId:id}).populate('product.productId').limit(limit * 1).skip((page - 1) * limit).sort({ date: -1 }).exec()
+
     const userdetails = await userdatas.findOne({ _id: id });
     res.render('vieworders',
       {
@@ -761,7 +761,7 @@ const editAddress = async (req, res) => {
     const userid = req.session.user._id
     const edit = await userdatas.findOne({ _id: userid, "address._id": id }, { "address.$": 1 })
     const userdetails = req.session.user;
-    res.render('editAddress', { edit: edit, userdata: userdetails })
+    res.render('editaddress', { edit: edit, userdata: userdetails })
   } catch (error) {
     res.render('error', { message: error.message })
   }
