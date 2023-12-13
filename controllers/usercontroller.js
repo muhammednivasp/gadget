@@ -722,7 +722,7 @@ const addAddress = async (req, res) => {
     // const id = req.session.user._id
     // const userdetails = await userdatas.findOne({ _id: id })
 
-    res.render('addAddress', { userdata: userdetails })
+    res.render('addAddress')
   } catch (error) {
     res.render('error', { message: error.message })
   }
