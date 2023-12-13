@@ -192,7 +192,7 @@ const verifyOtp = async (req, res, next) => {
       const user = await userdata.save();
       if (user) {
         req.session.user = details
-        res.render('userlogin');
+        res.redirect('/login');
       } else {
         res.render('otp', { message: "wrong otp" })
       }
